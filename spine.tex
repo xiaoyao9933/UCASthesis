@@ -1,0 +1,25 @@
+\documentclass[doctor]{ucasthesis}
+
+\ifxetex
+  \setCJKfamilyfont{zhfs}[RawFeature={vertical:}]{FangSong}
+\else % for latex/pdflatex
+  \usepackage{CJKvert}
+\fi
+
+\begin{document}
+
+% 不带英文或数字的书脊
+\cauthor{朝鲁}
+\ctitle{中国科学院大学学位论文模板使用示例文档}
+\spine
+
+% 带有英文或数字的书脊请按样例微调排版
+%\ifxetex
+%  \spine[中国科学院大学学位论文 \raisebox{5pt}{\rotatebox{-90}{\raisebox{2pt}{\LaTeX}}}\vspace{0.25em} \\ 模板 
+%    \raisebox{5pt}{\rotatebox{-90}{\raisebox{2pt}{v\version}}}\vspace{0.25em} \\ 使用示例文档]
+%\else
+%  \spine[中国科学院大学学位论文 \raisebox{5pt}{\rotatebox{-90}{\raisebox{2pt}{\LaTeX}}}\vspace{0.25em} \\ 模板 
+%    \raisebox{5pt}{\rotatebox{-90}{\raisebox{2pt}{v\version}}}\vspace{0.25em} \\ 使用示例文档]
+%\fi
+
+\end{document}

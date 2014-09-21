@@ -1,0 +1,72 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[doctor,secret]{ucasthesis}
+%\documentclass[master]{ucasthesis}
+%\documentclass[doctor]{ucasthesis}
+% \documentclass[%
+%   master|doctor, % mandatory option
+%   winfonts|nofonts|adobefonts, % mandatory only for bachelor and Linuxer
+%   secret,
+%   arialtoc,arialtitle]{ucasthesis}
+% 当使用 XeLaTeX 编译时，Linux 用户需要加上 nofonts 选项；
+% 当使用 PDFLaTeX 编译时，adobefonts 选项等效于 winfonts 选项(缺省选项)。
+
+% 所有其他可能用到的包都统一放到这里了，可以根据自己的实际添加或者删除。
+\usepackage{ucastils}
+
+% 你可以在这里修改配置文件中的定义，导言区可以使用中文。
+% \def\myname{朝鲁}
+
+\begin{document}
+
+% 定义所有的eps文件在 figures 子目录下
+\graphicspath{{figures/}}
+
+%%% 封面部分
+\frontmatter
+\input{data/cover}
+% 设置 PDF 文档的作者、主题等属性
+\makeatletter
+\ucas@setup@pdfinfo
+\makeatother
+\makecover
+
+% 目录
+\tableofcontents
+% 插图索引
+\listoffigures
+% 表格索引
+\listoftables
+% 符号对照表
+%\input{data/denotation}
+
+%%% 正文部分
+\mainmatter
+\include{data/chap01}
+\include{data/chap02}
+
+% 参考文献
+\bibliographystyle{GBT7714-2005NLang-UTF8}
+\bibliography{ref/refs}
+
+% 附录
+\begin{appendix}
+\input{data/appendix01}
+\end{appendix}
+
+%%% 其他部分
+\backmatter
+
+% 致谢
+\include{data/ack}
+
+% 作者简介
+\include{data/resume}
+
+% 保证总页数为偶数。连续双面打印时，防止将两份论文的末页、首页打印在同一张纸上。
+\cleardoublepage
+
+\end{document}
