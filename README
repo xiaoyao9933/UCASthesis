@@ -1,4 +1,3 @@
-==========
 What's it?
 ==========
 UCASThesis is a LaTeX thesis template package for University of Chinese Academy of Sciences in order to
@@ -9,7 +8,6 @@ UCASThesis 是中国科学院大学学位论文 LaTeX 模板，支持硕士、�
 本模板目前已经针对中国科学院计算技术研究所的论文模板进行调整，但由于中科院各院所的模板规范并非完全一致，
 其余院所的同学可能需要进行一些必要的修改。
 
-========
 版权须知
 ========
 Copyright (C) 2005-2013 by Xue Ruini <xueruini@gmail.com>
@@ -25,7 +23,6 @@ http://www.latex-project.org/lppl.txt
 and version 1.3a or later is part of all distributions of LaTeX
 version 2004/10/01 or later.
 
-========
 使用须知
 ========
 1. 本模板需使用texlive 2014或以上版本编译。
@@ -34,7 +31,6 @@ version 2004/10/01 or later.
   python zhfonts.py 
   完成各字体的具体选择。
 
-========
 使用方法
 ========
 1. 编译示例文档
@@ -53,15 +49,14 @@ version 2004/10/01 or later.
      figures/   图片目录
    
 
-========
-如何升级
-========
-1. 下载新模板并解压缩
-2. 将ucasthesis.cls, ucasthesis.cfg作相应替换即可。
+如何获取/升级
+=============
+1. 如需以git方式获取，git clone https://github.com/xiaoyao9933/UCASthesis
+2. 如需直接获取压缩包文件，请下载 https://github.com/xiaoyao9933/UCASthesis/archive/master.zip
+3. 如需升级，git pull 或重新下载zip包即可
 
-======================================
 Makefile Howto (by xiaoyao9933 & edyfox & littleleo)
-======================================
+====================================================
 1. 获取帮助文档
 
    make doc   得到 ucasthesis.pdf，帮助文档，里面有详细的说明。
@@ -108,4 +103,3 @@ Makefile：
         命令行通过 TEXI2DVI=texify 命令指定使用其它的 texi2dvi 工具。
 
 
-# $Id$
