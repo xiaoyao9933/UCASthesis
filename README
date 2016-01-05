@@ -11,7 +11,7 @@ UCASThesis 是中国科学院大学学位论文 LaTeX 模板，支持硕士、�
 版权须知
 ========
 Copyright (C) 2005-2013 by Xue Ruini <xueruini@gmail.com>
-Copyright (C) 2013-2014 derived by Chaolu <wuchaolu@gmail.com>
+Copyright (C) 2013-2016 derived by Chaolu <wuchaolu@gmail.com>
 
 This file may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3a
@@ -26,7 +26,7 @@ version 2004/10/01 or later.
 使用须知
 ========
 1. 本模板需使用texlive 2014或以上版本编译。
-2. 确定系统中存在xfig依赖。
+2. 确定系统中存在xfig，transfig依赖(Mac OSX 系统可尝试通过port进行安装)。
 3. 确保系统下存在相应的字体依赖，字体配置可由 
   python zhfonts.py 
   完成各字体的具体选择。

@@ -9,7 +9,7 @@
 %% This is a generated file.
 %% 
 %% Copyright (C) 2005-2013 by Ruini Xue <xueruini@gmail.com>
-%% Copyright (C) 2013-2014 derived by Chaolu <wuchaolu@gmail.com>
+%% Copyright (C) 2013-2016 derived by Chaolu <wuchaolu@gmail.com>
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3a
@@ -48,7 +48,12 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ExecuteOptions{utf,arialtitle}%?
 \ProcessOptions\relax
-\LoadClass[cs4size,a4paper,openany,nocap,UTF8]{ctexbook}
+\RequirePackage{ifxetex}
+ \ifxetex
+  \LoadClass[cs4size,a4paper,openany,nocap,nofonts,UTF8]{ctexbook}
+ \else
+  \LoadClass[cs4size,a4paper,openany,nocap,winfonts,UTF8]{ctexbook}
+\fi%    \end{macrocode}
 
 \ifucas@master\relax\else
   \ifucas@doctor\relax\else
@@ -57,17 +62,23 @@
   \fi
 \fi
 
-\RequirePackage{ifxetex}
 \RequirePackage{ifthen,calc}
 \RequirePackage{amsmath}
 \RequirePackage{txfonts}
 \RequirePackage{graphicx}
 \RequirePackage[labelformat=simple]{subcaption}
+\RequirePackage{indentfirst}
+
 \RequirePackage[neverdecrease]{paralist}
 \setdefaultleftmargin{3em}{2.2em}{1.87em}{1.7em}{1em}{1em}
 \ifucas@raggedbottom
-  \RequirePackage[bottom]{footmisc}
+  \RequirePackage[bottom,perpage]{footmisc}
   \raggedbottom
+\else
+  \RequirePackage[perpage]{footmisc}
+\fi
+\ifdefined \ctexset
+\ctexset{autoindent=true}
 \fi
 \renewcommand{\baselinestretch}{1.0}
 \RequirePackage{CJKnumb}
@@ -79,9 +90,7 @@
 
   \def\CJK@null{\kern\CJKnullspace\Unicode{48}{7}\kern\CJKnullspace}
   \defaultfontfeatures{Mapping=tex-text} % use TeX --
-  \ifCTEX@nofonts
-    \input{fontname.def}
-  \fi
+  \input{fontname.def}
 
   \setmainfont{Times New Roman}
   \setsansfont{Arial}
@@ -242,22 +251,6 @@
   \let\endenumerate\endcompactenum
   \let\description\compactdesc
   \let\enddescription\endcompactdesc}
-\newcommand*\MakePerPage[2][\@ne]{%
-  \expandafter\def\csname c@pchk@#2\endcsname{\c@pchk@{#2}{#1}}%
-  \newcounter{pcabs@#2}%
-  \@addtoreset{pchk@#2}{#2}}
-\def\new@pagectr#1{\@newl@bel{pchk@#1}}
-\def\c@pchk@#1#2{\z@=\z@
-  \begingroup
-  \expandafter\let\expandafter\next\csname pchk@#1@\arabic{pcabs@#1}\endcsname
-  \addtocounter{pcabs@#1}\@ne
-  \expandafter\ifx\csname pchk@#1@\arabic{pcabs@#1}\endcsname\next
-  \else \setcounter{#1}{#2}\fi
-  \protected@edef\next{%
-    \string\new@pagectr{#1}{\arabic{pcabs@#1}}{\noexpand\thepage}}%
-  \protected@write\@auxout{}{\next}%
-  \endgroup\global\z@}
-\MakePerPage{footnote}
 \def\ucas@textcircled#1{%
   \ifnum \value{#1} <10 \textcircled{\xiaoliu\arabic{#1}}
   \else\ifnum \value{#1} <100 \textcircled{\qihao\arabic{#1}}\fi

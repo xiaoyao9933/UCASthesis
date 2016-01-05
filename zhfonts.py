@@ -117,10 +117,6 @@ print("楷体：")
 kaiti = selectfont(kaitilist)
 print("仿宋：")
 fangsong = selectfont(fangsonglist)
-print("隶书：")
-lishu = selectfont(lishulist)
-print("幼圆：")
-youyuan = selectfont(youyuanlist)
 
 if not songti or not heiti or not kaiti:
     print("错误：缺少宋体、黑体或楷体字体")
@@ -144,21 +140,9 @@ with open('fontname.def', 'w') as f:
         f.write("\\setCJKfamilyfont{zhfs}{" + fangsong + "}\n")
     else:
         f.write("\\setCJKfamilyfont{zhfs}{" + songti + "}\n")
-    if lishu:
-        f.write("\\setCJKfamilyfont{zhli}{" + lishu + "}\n")
-    else:
-        print("缺少隶书，宋体代替")
-        f.write("\\setCJKfamilyfont{zhli}{" + songti + "}\n")
-    if youyuan:
-        f.write("\\setCJKfamilyfont{zhyou}{" + youyuan + "}\n")
-    else:
-        print("缺少幼圆，宋体代替")
-        f.write("\\setCJKfamilyfont{zhyou}{" + songti + "}\n")
     f.write('''
 \\newcommand*{\\songti}{\\CJKfamily{zhsong}}
 \\newcommand*{\\heiti}{\\CJKfamily{zhhei}}
 \\newcommand*{\\kaishu}{\\CJKfamily{zhkai}}
 \\newcommand*{\\fangsong}{\\CJKfamily{zhfs}}
-\\newcommand*{\\lishu}{\\CJKfamily{zhli}}
-\\newcommand*{\\youyuan}{\\CJKfamily{zhyou}}
 ''')
