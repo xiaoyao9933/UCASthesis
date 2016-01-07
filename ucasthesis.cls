@@ -534,7 +534,7 @@
       \ifucas@secret\hspace{25em}{\sihao[1]\songti 密级：\underline{\makebox[6em]{\ucas@secretcontent}}}\fi}
       \begin{figure}[H]
         \centering
-        \includegraphics[width=128mm,height=21.7mm]{coverlogo}
+        \includegraphics[width=128mm,height=21.7mm]{ucaslogo}
       \end{figure}
       \parbox[t][8cm][t]{\paperwidth-8cm}{
       \renewcommand{\baselinestretch}{1.3}

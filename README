@@ -27,9 +27,10 @@ version 2004/10/01 or later.
 ========
 1. 本模板需使用texlive 2014或以上版本编译。
 2. 确定系统中存在xfig，transfig依赖(Mac OSX 系统可尝试通过port进行安装)。
-3. 确保系统下存在相应的字体依赖，字体配置可由 
-  python zhfonts.py 
-  完成各字体的具体选择。
+3. 确保当前系统已安装配置SimSun，SimHei，KaiTi，FangSong字体，如果您使用的是Linux和Mac OSX系统，请自行
+以“fc-cache 添加 win 字体”为关键字通过Google搜索解决方案)。
+备用方案：如果您并不想安装其他字体，而仅使用系统自带的兼容字体（不建议这样做），则可利用以下命令交互式地完成字体配置
+  python zhfonts.py
 
 使用方法
 ========
