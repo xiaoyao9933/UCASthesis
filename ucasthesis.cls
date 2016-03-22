@@ -485,6 +485,7 @@
 \ucas@define@term{cseconddiscipline}
 \ucas@define@term{cauthor}
 \ucas@define@term{csupervisor}
+\ucas@define@term{csupervisortitle}
 \ucas@define@term{csupervisorplace}
 \ucas@define@term{cassosupervisor}
 \ucas@define@term{ccosupervisor}
@@ -552,7 +553,7 @@
 
 \ucas@author@title\ucas@title@sep     &\underline{\makebox[25em]{\ucas@cauthor}}\\
 
-\ucas@supervisor@title\ucas@title@sep     &\underline{\makebox[25em]{\ucas@csupervisor}}\\
+\ucas@supervisor@title\ucas@title@sep     &\underline{\makebox[25em]{\ucas@csupervisor\hspace{1em}\ucas@csupervisortitle}}\\
 
 &\underline{\makebox[25em]{\ucas@csupervisorplace}}\\
 
@@ -610,22 +611,25 @@
     \end{center}}
   \end{center}}
 \newcommand{\ucas@declare@mk}{%
-\begin{center}\sanhao\heiti{\ucas@declarename}\end{center}
-  \vskip40pt\sihao[2.03]\par
+\begin{center}\xiaoer\heiti{\ucas@declarename}\end{center}
+  \vskip40pt\xiaosi[2.03]\par
   \ucas@declaretext\par
   \vskip1.5cm
-  \sihao
-  \hspace{11em}\ucas@signature\hspace{6em}\ucas@backdate
+  \xiaosi
+  \noindent\ucas@signature\hspace{14em}\ucas@backdate
 }
 \newcommand{\ucas@authorization@mk}{%
-  \vspace*{0.72cm} % shit code!
-  \begin{center}\sanhao\heiti{\ucas@authtitle}\end{center}
-  \vskip40pt\sihao[2.03]\par
+  %\vspace*{0.1cm} % shit code!
+  \begin{center}\xiaoer\heiti{\ucas@authtitle}\end{center}
+  \vskip25pt\xiaosi[2.03]\par
   \ucas@authorization\par
   \ucas@authorizationaddon\par
   \vskip1.5cm
-  \sihao
-  \ucas@authorsig\hspace{6em}\ucas@teachersig\hspace{6em}\ucas@frontdate
+  \xiaosi
+  \noindent\ucas@authorsig\hspace{14em}\ucas@teachersig\
+  \newline
+  \vskip1cm
+  \noindent\ucas@frontdate \hspace{8em} \ucas@frontdate
   }
 \newcommand{\makecover}{
   \phantomsection
@@ -641,7 +645,7 @@
         \topsep\z@%
         \listparindent\parindent%
         \parsep\parskip%
-        \setlength{\itemsep}{5cm}
+        \setlength{\itemsep}{3cm}
         \setlength{\leftmargin}{0.9mm}%
         \setlength{\rightmargin}{0.9mm}}%
       \item[]\ucas@declare@mk
