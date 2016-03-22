@@ -255,8 +255,7 @@
   \ifnum \value{#1} <10 \textcircled{\xiaoliu\arabic{#1}}
   \else\ifnum \value{#1} <100 \textcircled{\qihao\arabic{#1}}\fi
   \fi}
-\renewcommand{\thefootnote}{\ucas@textcircled{footnote}}
-\renewcommand{\thempfootnote}{\ucas@textcircled{mpfootnote}}
+
 \def\footnoterule{\vskip-3\p@\hrule\@width0.3\textwidth\@height0.4\p@\vskip2.6\p@}
 \let\ucas@footnotesize\footnotesize
 \renewcommand\footnotesize{\ucas@footnotesize\xiaowu[1.5]}
@@ -667,10 +666,6 @@
     \box0\ucas@ckeywords
   \cleardoublepage
   \ucas@chapter*[]{\ucas@etitle}[\eabstractname] % no tocline
-  \begin{center}
-  \ucas@eauthor\hspace{1ex}(\ucas@emajor)\\
-  Directed by \ucas@esupervisor\\
-  \end{center}
   \hspace{2em}\ucas@eabstract
   \vskip12bp
   \setbox0=\hbox{\textbf{Keywords:\enskip}}
