@@ -614,7 +614,7 @@
 \begin{center}\xiaoer\heiti{\ucas@declarename}\end{center}
   \vskip40pt\xiaosi[2.03]\par
   \ucas@declaretext\par
-  \vskip1.5cm
+  \vskip1cm
   \xiaosi
   \noindent\ucas@signature\hspace{14em}\ucas@backdate
 }
@@ -628,7 +628,7 @@
   \xiaosi
   \noindent\ucas@authorsig\hspace{14em}\ucas@teachersig\
   \newline
-  \vskip1cm
+  \vskip1.5cm
   \noindent\ucas@frontdate \hspace{8em} \ucas@frontdate
   }
 \newcommand{\makecover}{
