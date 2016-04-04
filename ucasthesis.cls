@@ -582,30 +582,37 @@
       \begin{center}
         \sanhao\sffamily\ucas@etitle
       \end{center}}
-    \parbox[t][7cm][c]{\paperwidth-7.2cm}{
-      \renewcommand{\baselinestretch}{1.3}
-      \begin{center}
-        \sanhao\rmfamily by\\[3bp]
-        \rmfamily\ucas@eauthor
-      \end{center}}
 
     \parbox[t][8cm][t]{\paperwidth-7.2cm}{
-      \renewcommand{\baselinestretch}{1.3}
+    \vspace*{2cm}
+      \renewcommand{\baselinestretch}{1.4}
       \begin{center}
         \sihao
         \rmfamily A \ifucas@master Thesis \else Dissertation \fi
         Submitted to\\
-        {\rmfamily University of Chinese Academy of Sciences}\\
+        \rmfamily \textbf{The University of Chinese Academy of Sciences}\\
         \rmfamily in Partial Fulfillment of the Requirement\\
         \rmfamily for the Degree of\\
-        {\rmfamily\ucas@edegree}
-
+        \rmfamily \textbf{\ucas@edegree}\\
+        \rmfamily in \\
+        \rmfamily \textbf{\ucas@emajor}
       \end{center}}
 
-    \par\vspace{0.9cm}
+    \parbox[t][7cm][c]{\paperwidth-7.2cm}{
+      \renewcommand{\baselinestretch}{1.4}
+      \begin{center}
+        \sihao\rmfamily by\\[3bp]
+        \sanhao
+        \rmfamily \textbf{\ucas@eauthor}\\
+        \sihao
+        \rmfamily \textbf{\ifucas@master Thesis \else Dissertation \fi Supervisor: Professor \ucas@esupervisor}
+      \end{center}}
+
+    \par\vspace{0.5cm}
     \parbox[t][2cm][b]{\paperwidth-7.2cm}{
+    \renewcommand{\baselinestretch}{1.4}
     \begin{center}
-      \sihao\rmfamily\ucas@edepartment\par\vspace*{1ex}
+      \sihao\rmfamily\ucas@edepartment\par
       \sihao\rmfamily\ucas@edate
     \end{center}}
   \end{center}}
