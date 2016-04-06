@@ -405,15 +405,15 @@
     \@mkboth{#3}{#3}
   \fi}
 \renewcommand\section{\@startsection {section}{1}{\z@}%
-                     {-8bp\@plus -1ex \@minus -.2ex}%
+                     {8bp\@plus 1ex \@minus .2ex}%
                      {8bp \@plus .2ex}%
                      {\csname ucas@title@font\endcsname\heiti\xiaosi[1.75]}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-                        {-4bp\@plus -1ex \@minus -.2ex}%
+                        {4bp\@plus 1ex \@minus .2ex}%
                         {4bp \@plus .2ex}%
                         {\csname ucas@title@font\endcsname\heiti\xiaosi[1.75]}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-                           {-4bp\@plus -1ex \@minus -.2ex}%
+                           {4bp\@plus 1ex \@minus .2ex}%
                            {4bp \@plus .2ex}%
                            {\csname ucas@title@font\endcsname\heiti\xiaosi[1.75]}}
 
