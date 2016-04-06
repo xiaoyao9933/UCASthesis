@@ -81,12 +81,11 @@
 \ctexset{autoindent=true}
 \fi
 \renewcommand{\baselinestretch}{1.0}
-\RequirePackage{CJKnumb}
+\RequirePackage{zhnumber}
 \ifxetex
   \xeCJKsetup{AutoFakeBold=false,AutoFakeSlant=false,AllowBreakBetweenPuncts=true}
   \punctstyle{quanjiao}
   \normalspacedchars{-}
-  % todo: minor fix of CJKnumb
 
   \def\CJK@null{\kern\CJKnullspace\Unicode{48}{7}\kern\CJKnullspace}
   \defaultfontfeatures{Mapping=tex-text} % use TeX --
@@ -121,7 +120,7 @@
 \RequirePackage{refcount}
 \newcommand{\chapterref}[1]{%
   \@ifundefined{hyperref}{}{\hyperref[#1]%
-  {\CJKnumber{\getrefnumber{#1}}}}}
+  {\zhnumber{\getrefnumber{#1}}}}}
 
 \RequirePackage{xcolor}
 \definecolor{ucascitecolor}{rgb}{0.0, 0.50, 0.0}
