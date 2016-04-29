@@ -54,7 +54,8 @@ version 2004/10/01 or later.
 =============
 1. 如需以git方式获取，git clone https://github.com/xiaoyao9933/UCASthesis
 2. 如需直接获取压缩包文件，请下载 https://github.com/xiaoyao9933/UCASthesis/archive/master.zip
-3. 如需升级，git pull 或重新下载zip包即可
+3. 建议通过git pull方式更新模板，如果你之前已经完成论文的一部分写作，则可以通过下载新版模板包里的ucasthesis.cls、ucasthesis.cfg以及ucasthesis.dtx文件，替换至你的论文目录中完成模板更新；也可以通过下载新版模板后，拷贝入含有写作内容的main.tex,data/figures/ref目录进行更新。
+
 
 Makefile Howto (by xiaoyao9933 & edyfox & littleleo)
 ====================================================
