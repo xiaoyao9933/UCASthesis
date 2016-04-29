@@ -2375,16 +2375,12 @@
 % 续。
 %    \begin{macrocode}
   \cleardoublepage
-  \ucas@chapter*[]{\ucas@etitle}[\eabstractname] % no tocline
+  \ucas@chapter*[]{\eabstractname}[\eabstractname] % no tocline
 %    \end{macrocode}
 %
 % 摘要内容用小四号 Times New Roman。
 %    \begin{macrocode}
-  \begin{center}
-  \ucas@eauthor\hspace{1ex}(\ucas@emajor)\\
-  Directed by \ucas@esupervisor\\
-  \end{center}
-  \hspace{2em}\ucas@eabstract
+  \ucas@eabstract
 %    \end{macrocode}
 %
 % 每个关键词之间空四个英文字符宽度

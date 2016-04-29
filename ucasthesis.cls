@@ -668,12 +668,8 @@
   \noindent\hangindent\wd0\hangafter1
     \box0\ucas@ckeywords
   \cleardoublepage
-  \ucas@chapter*[]{\ucas@etitle}[\eabstractname] % no tocline
-  \begin{center}
-  \ucas@eauthor\hspace{1ex}(\ucas@emajor)\\
-  Directed by \ucas@esupervisor\\
-  \end{center}
-  \hspace{2em}\ucas@eabstract
+  \ucas@chapter*[]{\eabstractname}[\eabstractname] % no tocline
+  \ucas@eabstract
   \vskip12bp
   \setbox0=\hbox{\textbf{Keywords:\enskip}}
   \noindent
