@@ -25,7 +25,8 @@ version 2004/10/01 or later.
 
 使用须知
 ========
-1. 本模板需使用texlive 2014或以上版本、MikTex2.9或以上版本编译。
+1. 本模板强烈建议使用texlive 2014或以上版本、MikTex2.9或以上版本编译。特别注意的是， CTEX 可能由于内置宏包老旧，暂时无法支持 UCASThesis 模板，
+随之可能会产生"ifxetex","zhnumber.sty not found"等问题。
 2. 确定系统中存在xfig，transfig依赖(Mac OSX 系统可尝试通过port进行安装)。
 3. 确保当前系统已安装配置SimSun，SimHei，KaiTi，FangSong字体，如果您使用的是Linux和Mac OSX系统，请自行
 以“fc-cache 添加 win 字体”为关键字通过Google搜索解决方案)。
