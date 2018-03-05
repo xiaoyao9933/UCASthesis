@@ -16,7 +16,7 @@ UCASThesis 是中国科学院大学学位论文 LaTeX 模板，支持硕士、�
 版权须知
 ========
 Copyright (C) 2005-2013 by Xue Ruini <xueruini@gmail.com>
-Copyright (C) 2013-2016 derived by Chaolu <wuchaolu@gmail.com>
+Copyright (C) 2013-2018 derived by Chaolu <wuchaolu@gmail.com>
 
 This file may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3a
@@ -28,20 +28,22 @@ http://www.latex-project.org/lppl.txt
 and version 1.3a or later is part of all distributions of LaTeX
 version 2004/10/01 or later.
 
-使用须知
+使用须知(必读！)
 ========
 
 1. 本模板强烈建议使用texlive 2014或以上版本、MikTex2.9或以上版本编译，***请不要使用CTEX***。
   
   特别注意的是， CTEX 可能由于内置宏包老旧，暂时无法支持 UCASThesis 模板，随之可能会产生"ifxetex","zhnumber.sty not found"等问题。
 
-2. 确定系统中存在xfig，transfig依赖(Mac OSX 系统可尝试通过port进行安装)。
+2. 确定系统中存在fontconfig, xfig，transfig依赖(Mac OSX 系统可尝试通过brew进行安装, 如brew install fontconfig, brew install transfig)。
 
 3. 确保当前系统已安装配置SimSun，SimHei，KaiTi，FangSong字体，如果您使用的是Linux和Mac OSX系统，请自行
-以“fc-cache 添加 win 字体”为关键字通过Google搜索解决方案)。
+以“fc-cache 添加 win 字体”为关键字通过Google搜索解决方案), 或参照[Wiki页面](https://github.com/xiaoyao9933/UCASthesis/wiki)。
 备用方案：如果您并不想安装其他字体，而仅使用系统自带的兼容字体（不建议这样做），则可利用以下命令交互式地完成字体配置
 
     python zhfonts.py
+
+4. 您可以使用各种编辑器环境，但是要确保使用XeLatex方式进行编译。 pdflatex方式我已经不再进行测试了，所以不保证各种环境下都正常工作。
 
 使用方法
 ========

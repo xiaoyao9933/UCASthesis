@@ -9,7 +9,7 @@
 %% This is a generated file.
 %% 
 %% Copyright (C) 2005-2013 by Ruini Xue <xueruini@gmail.com>
-%% Copyright (C) 2013-2016 derived by Chaolu <wuchaolu@gmail.com>
+%% Copyright (C) 2013-2018 derived by Chaolu <wuchaolu@gmail.com>
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3a
