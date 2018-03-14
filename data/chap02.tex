@@ -70,7 +70,7 @@ jPicEdt, jaxdraw 等等。
   \subcaptionbox{第一个小图形\label{fig:subfig1}}
   [3cm] %标题的长度，超过则会换行，如下一个小图。
     {\includegraphics[height=3cm]{thu-fig-logo}}
-      \hspace{4em}%
+      \hspace{4em}% 这里记得不要空行，否则会变为垂直的两个图
   \subcaptionbox{第二个小图形，注意这个图略矮些。如果标题很长的话，它会自动换行\label{fig:subfig2}}
       {\includegraphics[height=2cm]{thu-text-logo}}
   \caption{包含子图形的大图形(subcaptionbox示例)}

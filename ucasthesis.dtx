@@ -1154,7 +1154,8 @@
 %
 % 参考文献引用宏包。
 %    \begin{macrocode}
-\RequirePackage[numbers,sort&compress]{natbib}
+%\RequirePackage[numbers,sort&compress]{natbib}
+
 %    \end{macrocode}
 %
 % 生成有书签的 pdf 及其开关，请结合 gbk2uni 避免书签乱码。
@@ -1209,7 +1210,7 @@
 %    \begin{macrocode}
 %<*cls>
 \renewcommand\frontmatter{%
-  \cleardoublepage
+  \scleardoublepage
   \@mainmatterfalse
   \pagenumbering{Roman}
   \pagestyle{ucas@empty}}
@@ -1396,8 +1397,11 @@
 %<*cls>
 \let\ucas@cleardoublepage\cleardoublepage
 \newcommand{\ucas@clearemptydoublepage}{%
-  \clearpage{\pagestyle{empty}\ucas@cleardoublepage}}
+  \clearpage{\pagestyle{ucas@headings}\ucas@cleardoublepage}}
+\newcommand{\ucas@sclearemptydoublepage}{%
+  \clearpage{\pagestyle{ucas@empty}\ucas@cleardoublepage}}
 \let\cleardoublepage\ucas@clearemptydoublepage
+\let\scleardoublepage\ucas@sclearemptydoublepage
 %    \end{macrocode}
 %
 % 定义页眉和页脚。chapter 自动调用 thispagestyle{ucas@plain}，所以要重新定义 ucas@plain。
@@ -1690,7 +1694,7 @@
 \newcommand\CJKprechaptername{第}
 \newcommand\CJKchaptername{章}
 
-\newcommand\CJKthechapter{\zhnumber{\@arabic\c@chapter}}
+\newcommand\CJKthechapter{\@arabic\c@chapter}
 \renewcommand\chaptername{\CJKprechaptername\CJKthechapter\CJKchaptername}
 \renewcommand\appendixname{附录}
 \newcommand{\cabstractname}{摘\hspace{1em}要}
@@ -1702,9 +1706,11 @@
 \def\CJK@todaysmall@short{\the\year 年 \the\month 月}
 \def\CJK@todaysmall{\CJK@todaysmall@short \the\day 日}
 \def\ucas@CJK@year{\zhdigits{\the\year}}
+\def\ucas@year{\the\year}
 \def\ucas@CJK@month{\zhdigits{\the\month}}
+\def\ucas@month{\the\month}
 \def\ucas@CJK@day{\zhdigits{\the\day}}
-\def\CJK@todaybig@short{\ucas@CJK@year{}年\ucas@CJK@month{}月}
+\def\CJK@todaybig@short{\ucas@year{}年\ucas@month{}月}
 \def\CJK@todaybig{\CJK@todaybig@short{}\ucas@CJK@day{}日}
 \def\CJK@today{\CJK@todaysmall}
 \renewcommand\today{\CJK@today}
@@ -1734,7 +1740,7 @@
 %    \begin{macrocode}
 \renewcommand\chapter{%
   \cleardoublepage%
-  \thispagestyle{ucas@foot}%
+  \thispagestyle{ucas@headings}%
   \global\@topnum\z@%
   \@afterindenttrue%
   \secdef\@chapter\@schapter}
@@ -1754,7 +1760,7 @@
 \def\@makechapterhead#1{%
   \vspace*{17bp}
   {\parindent \z@ \centering
-    \csname ucas@title@font\endcsname\heiti\sihao[2.41]
+    \bfseries \csname ucas@title@font\endcsname\heiti\sihao[2.41]
     \ifnum \c@secnumdepth >\m@ne
       \@chapapp\hskip1em
     \fi
@@ -1766,7 +1772,7 @@
 \def\@makeschapterhead#1{%
   \vspace*{17bp}%
   {\parindent \z@ \centering
-   \csname ucas@title@font\endcsname\heiti\sihao[2.41]
+   \bfseries \csname ucas@title@font\endcsname\heiti\sihao[2.41]
      \def\@tempa{#1}
      \def\@tempb{\eabstractname}
      \ifx\@tempa\@tempb\fi
@@ -1873,7 +1879,7 @@
 %    \begin{macrocode}
 \renewcommand\tableofcontents{%
   \cleardoublepage
-  \ucas@chapter*{\contentsname}[\scontentsname]
+  \ucas@chapter*[]{\contentsname}[\contentsname]
   \xiaosi[1.5]\@starttoc{toc}\normalsize}
 \ifucas@arialtoc
   \def\ucas@toc@font{\sffamily}
@@ -1906,13 +1912,13 @@
       \leavevmode
       \advance\leftskip\@tempdima
       \hskip -\leftskip
-      {\csname ucas@toc@font\endcsname\heiti\xiaosi #1} % numberline is called here, and it uses \@tempdima
+      {\csname ucas@toc@font\endcsname\heiti\sihao #1} % numberline is called here, and it uses \@tempdima
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
       \nobreak{\normalcolor #2}\par
       \penalty\@highpenalty
     \endgroup
   \fi}
-\renewcommand*\l@section{\vspace*{1ex}\@dottedtocline{1}{1.2em}{2.1em}}
+\renewcommand*\l@section{\heiti\vspace*{1ex}\@dottedtocline{1}{1.2em}{2.1em}}
 \renewcommand*\l@subsection{\vspace*{1ex}\@dottedtocline{2}{2em}{3em}}
 %%\renewcommand*\l@subsubsection{\vspace*{1ex}\@dottedtocline{3}{3.5em}{3.8em}}
 %</cls>
@@ -2085,8 +2091,8 @@
 %
 %    \begin{macrocode}
 %<*cfg>
-\def\ucas@ckeywords@separator{；}
-\def\ucas@ekeywords@separator{;}
+\def\ucas@ckeywords@separator{，}
+\def\ucas@ekeywords@separator{,}
 \def\ucas@catalog@number@title{分类号}
 \def\ucas@id@title{编号}
 \def\ucas@title@sep{：}
@@ -2098,12 +2104,10 @@
 \def\ucas@author@title{作者姓名}
 \ifucas@doctor
   \def\ucas@apply{博士学位论文}
-  \newcommand{\headingtitle}{中国科学院博士学位论文 ── \ucas@ctitle}
 \else
   \def\ucas@apply{硕士学位论文}
-  \newcommand{\headingtitle}{中国科学院硕士学位论文 ── \ucas@ctitle}
 \fi
-
+\newcommand{\headingtitle}{\ucas@ctitle}
 
 \def\ucas@department@title{研\hspace{\fill}究\hspace{\fill}所}
 \def\ucas@major@title{学科专业}
@@ -2116,12 +2120,14 @@
 \cdate{\CJK@todaybig@short}
 \edate{\ifcase \month \or January\or February\or March\or April\or May%
        \or June\or July \or August\or September\or October\or November
-       \or December\fi\unskip,\ \ \the\year}
-\newcommand{\ucas@authtitle}{论文版权使用授权书}
+       \or December\fi\unskip\ \ \the\year}
+\newcommand{\ucas@authtitle}{中国科学院大学\\\vspace{1em}学位论文授权使用声明}
 \newcommand{\ucas@authorization}{%
-本人授权中国科学院计算技术研究所可以保留并向国家有关部门或机构送交本论文的复印件和电子文档，
-允许本论文被查阅和借阅，可以将本论文的全部或部分内容编入有关数据库进行检索，可以采用影印、缩
-印或扫描等复制手段保存、汇编本论文。
+本人完全了解并同意遵守中国科学院有关保存和使用学位论文的规定，即中国科学院有权保留送交学位论文的副本，
+允许该论文被查阅，可以按照学术研究公开原则和保护知识产权的原则公布该论文的全部或部分内容，
+可以采用影印、缩印或其他复制手段保存、汇编本学位论文。\par
+涉密及延迟公开的学位论文在解密或延迟期后适用本声明。
+
 }
 \newcommand{\ucas@authorizationaddon}{%
 （保密论文在解密后适用本授权书。）}
@@ -2137,14 +2143,14 @@
 %
 %    \begin{macrocode}
 %<*cfg>
-\newcommand{\ucas@ackname}{致\hspace{1em}谢}
-\newcommand{\ucas@sackname}{致谢}
-\newcommand{\ucas@declarename}{声\hspace{3em}明}
-\newcommand{\ucas@declaretext}{我声明本论文是我本人在导师指导下进行的研究工作及取得的研究
-成果。尽我所知，除了文中特别加以标注和致谢的地方外，本论文中不包含其他人已经发表或撰写过的
-研究成果。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。}
+\newcommand{\ucas@ackname}{致谢}
+\newcommand{\ucas@sackname}{致\hspace{1em}谢}
+\newcommand{\ucas@declarename}{中国科学院大学\\\vspace{1em}研究生学位论文原创性声明}
+\newcommand{\ucas@declaretext}{本人郑重声明：所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
+尽我所知，除文中已经注明引用的内容外，本论文不包含任何其他个人或集体已经发表或撰写过的研究成果。
+对论文所涉及的研究工作做出贡献的其他个人和集体，均已在文中以明确方式标明或致谢。}
 \newcommand{\ucas@signature}{作者签名：}
-\newcommand{\ucas@backdate}{日期：}
+\newcommand{\ucas@backdate}{日\hspace{2em}期：}
 %</cfg>
 %    \end{macrocode}
 %
@@ -2171,14 +2177,14 @@
       \ifucas@secret\hspace{25em}{\sihao[1]\songti 密级：\underline{\makebox[6em]{\ucas@secretcontent}}}\fi}
       \begin{figure}[H]
         \centering
-        \includegraphics[width=128mm,height=21.7mm]{ucaslogo}
+        \includegraphics[width=90mm]{ucaslogo}
       \end{figure}
       \parbox[t][8cm][t]{\paperwidth-8cm}{
       \renewcommand{\baselinestretch}{1.3}
       \begin{center}    
-      \yihao\heiti\ucas@apply
+      \yihao\heiti\textbf{\ucas@apply}
       \par\vskip 40bp
-      \sanhao\heiti\ucas@ctitle
+      \xiaosan\heiti\textbf{\ucas@ctitle}
       \end{center}}
 %    \end{macrocode}
 %
@@ -2186,7 +2192,7 @@
 %    \begin{macrocode}
 
 
-\parbox[t][9cm][t]{\textwidth}{{\sihao\songti
+\parbox[t][9cm][t]{\textwidth}{{\bfseries\sihao\songti
 \begin{center}
 \setlength{\ucas@title@width}{4em}
 \setlength{\extrarowheight}{2.5ex}
@@ -2208,7 +2214,7 @@
 \end{center}}}
 %    \end{macrocode}
 %
-% 论文成文打印的日期，用三号宋体汉字，不用阿拉伯数字
+% 论文成文打印的日期，用阿拉伯数字
 %    \begin{macrocode}
   \begin{center}
     {\vskip 3ex\sihao \songti \ucas@cdate}
@@ -2232,41 +2238,36 @@
     \parbox[t][3.2cm][t]{\paperwidth-7.2cm}{
       \renewcommand{\baselinestretch}{1.5}
       \begin{center}
-        \sanhao\sffamily\ucas@etitle
+        \xiaosan\sffamily\textbf{\ucas@etitle}
       \end{center}}
 
 
-    \parbox[t][8cm][t]{\paperwidth-7.2cm}{
+    \parbox[t][15cm][t]{\paperwidth-7.2cm}{
     \vspace*{2cm}
       \renewcommand{\baselinestretch}{1.4}
       \begin{center}
         \sihao
-        \rmfamily A \ifucas@master Thesis \else Dissertation \fi
-        Submitted to\\
-        \rmfamily \textbf{The University of Chinese Academy of Sciences}\\
-        \rmfamily in partial fulfillment of the requirement\\
-        \rmfamily for the degree of\\
+        \rmfamily \textbf{A \ifucas@master thesis \else dissertation \fi
+        submitted to}\\
+        \rmfamily \textbf{University of Chinese Academy of Sciences}\\
+        \rmfamily \textbf{in partial fulfillment of the requirement}\\
+        \rmfamily \textbf{for the degree of}\\
         \rmfamily \textbf{\ucas@edegree}\\
-        \rmfamily in \\
-        \rmfamily \textbf{\ucas@emajor}
-      \end{center}}
+        \rmfamily \textbf{in \ucas@emajor}
 
-    \parbox[t][7cm][c]{\paperwidth-7.2cm}{
-      \renewcommand{\baselinestretch}{1.4}
-      \begin{center}
-        \sihao\rmfamily by\\[3bp]
-        \sanhao
+        \sanhao\rmfamily \textbf{By}\\[3bp]
+        \sihao
         \rmfamily \textbf{\ucas@eauthor}\\
         \sihao
-        \rmfamily \textbf{\ifucas@master Thesis \else Dissertation \fi Supervisor: Professor \ucas@esupervisor}
+        \rmfamily \textbf{Supervisor: Professor \ucas@esupervisor}
       \end{center}}
 
     \par\vspace{0.5cm}
     \parbox[t][2cm][b]{\paperwidth-7.2cm}{
     \renewcommand{\baselinestretch}{1.4}
     \begin{center}
-      \sihao\rmfamily\ucas@edepartment\par
-      \sihao\rmfamily\ucas@edate
+      \sihao\rmfamily\textbf{\ucas@edepartment}\par
+      \sihao\rmfamily\textbf{\ucas@edate}
     \end{center}}
   \end{center}}
 %    \end{macrocode}
@@ -2275,22 +2276,26 @@
 % 封面中论文授权部分。
 %    \begin{macrocode}
 \newcommand{\ucas@declare@mk}{%
-\begin{center}\sanhao\heiti{\ucas@declarename}\end{center}
-  \vskip40pt\sihao[2.03]\par
+\begin{center}\sihao\heiti{\ucas@declarename}\end{center}
+  \vskip25pt\xiaosi[2.03]\par
   \ucas@declaretext\par
   \vskip1.5cm
-  \sihao
-  \hspace{11em}\ucas@signature\hspace{6em}\ucas@backdate
+  \xiaosi
+  \hspace{13em}\ucas@signature\par
+  \vskip0.4cm
+  \hspace{13em}\ucas@backdate
 }
 \newcommand{\ucas@authorization@mk}{%
-  \vspace*{0.72cm} % shit code!
-  \begin{center}\sanhao\heiti{\ucas@authtitle}\end{center}
-  \vskip40pt\sihao[2.03]\par
+  %\vspace*{0.72cm} % shit code!
+  \begin{center}\sihao\heiti{\ucas@authtitle}\end{center}
+  \vskip40pt\xiaosi[2.03]\par
   \ucas@authorization\par
-  \ucas@authorizationaddon\par
+  %\ucas@authorizationaddon\par
   \vskip1.5cm
-  \sihao
-  \ucas@authorsig\hspace{6em}\ucas@teachersig\hspace{6em}\ucas@frontdate
+  \xiaosi
+  \hspace{6em}\ucas@authorsig\hspace{6em}\ucas@teachersig\par
+  \vskip0.4cm
+  \hspace{6em}\ucas@backdate\hspace{6em}\ucas@backdate
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2313,21 +2318,21 @@
 %
 % 研究生论文需要增加英文封面
 %    \begin{macrocode}
-\cleardoublepage
+\scleardoublepage
 \clearpage\ucas@engcover
 
 %    \end{macrocode}
 %
 % 授权说明
 %    \begin{macrocode}
-      \cleardoublepage%
+      \scleardoublepage%
       \begin{list}{}{%
         \topsep\z@%
         \listparindent\parindent%
         \parsep\parskip%
-        \setlength{\itemsep}{5cm}
-        \setlength{\leftmargin}{0.9mm}%
-        \setlength{\rightmargin}{0.9mm}}%
+        \setlength{\itemsep}{3cm}
+        \setlength{\leftmargin}{6mm}%
+        \setlength{\rightmargin}{6mm}}%
       \item[]\ucas@declare@mk
       \item[]\ucas@authorization@mk%
       \end{list}%
@@ -2352,9 +2357,9 @@
 %    \begin{macrocode}
 %<*cls>
 \newcommand{\ucas@makeabstract}{%
-  \cleardoublepage
-  \ucas@chapter*{\cabstractname}[\csabstractname] % no tocline
-  \pagestyle{ucas@plain}
+  \scleardoublepage
+  \ucas@chapter*[]{\cabstractname}[] % no tocline
+  \pagestyle{ucas@headings}
   \pagenumbering{Roman}
 %    \end{macrocode}
 %
@@ -2387,7 +2392,7 @@
 % 每个关键词之间空四个英文字符宽度
 %    \begin{macrocode}
   \vskip12bp
-  \setbox0=\hbox{\textbf{Keywords:\enskip}}
+  \setbox0=\hbox{\xiaosi\textbf{Key Words:\enskip}}
   \noindent
     \box0\ucas@ekeywords}
 %</cls>
@@ -2430,7 +2435,7 @@
 
 \newenvironment{ack}{%
     \cleardoublepage
-    \ucas@chapter*{\ucas@ackname}[\ucas@sackname]
+    \ucas@chapter*[\ucas@ackname]{\ucas@sackname}[\ucas@sackname]
   }
 
 %</cls>
@@ -2454,7 +2459,7 @@
   \cleardoublepage
   \@ifstar
     {\ucas@chapter*[]{\csname list#1name\endcsname}\ucas@starttoc{#1}}
-    {\ucas@chapter*{\csname list#1name\endcsname}\ucas@starttoc{#1}}}
+    {\ucas@chapter*[]{\csname list#1name\endcsname}\ucas@starttoc{#1}}}
 \renewcommand\listoffigures{\ucas@listof{figure}}
 \renewcommand*\l@figure{\vspace*{1ex}\@dottedtocline{1}{0em}{4em}}
 \renewcommand\listoftables{\ucas@listof{table}}
@@ -2503,13 +2508,13 @@
 % 正文引用模式。依赖于 \pkg{natbib} 宏包，修改其中的命令。
 %    \begin{macrocode}
 %<*cls>
-\bibpunct{[}{]}{,}{s}{}{,}
-\renewcommand\NAT@citesuper[3]{\ifNAT@swa%
-  \unskip\kern\p@\textsuperscript{\NAT@@open #1\NAT@@close}%
-  \if*#3*\else\ (#3)\fi\else #1\fi\endgroup}
-\DeclareRobustCommand\onlinecite{\@onlinecite}
-\def\@onlinecite#1{\begingroup\let\@cite\NAT@citenum\citep{#1}\endgroup}
-\renewcommand{\cite}[1]{{\onlinecite{#1}}}
+%\bibpunct{[}{]}{,}{s}{}{,}
+%\renewcommand\NAT@citesuper[3]{\ifNAT@swa%
+%  \unskip\kern\p@\textsuperscript{\NAT@@open #1\NAT@@close}%
+%  \if*#3*\else\ (#3)\fi\else #1\fi\endgroup}
+%\DeclareRobustCommand\onlinecite{\@onlinecite}
+%\def\@onlinecite#1{\begingroup\let\@cite\NAT@citenum\citep{#1}\endgroup}
+%\renewcommand{\cite}[1]{{\onlinecite{#1}}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2541,7 +2546,7 @@
 %    \begin{macrocode}
 \renewenvironment{thebibliography}[1]{%
    \ucas@chapter*{\bibname}%
-   \wuhao[1.5]
+   \erhao[1.5]
    \list{\@biblabel{\@arabic\c@enumiv}}%
         {\renewcommand{\makelabel}[1]{##1\hfill}
          \settowidth\labelwidth{1.1cm}
@@ -2600,7 +2605,7 @@
 % 个人简历里面会出现的以发表文章，在投文章等。
 %    \begin{macrocode}
 %<*cfg>
-\newcommand{\ucas@resume@title}{作者简介}
+\newcommand{\ucas@resume@title}{作者简历及攻读学位期间发表的学术论文与研究成果}
 
 %</cfg>
 %<*cls>

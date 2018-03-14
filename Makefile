@@ -83,8 +83,7 @@ $(THESISMAIN).pdf: $(CLSFILES) $(THESISCONTENTS) $(THESISMAIN).bbl
 	xelatex $(THESISMAIN).tex
 
 $(THESISMAIN).bbl: $(BIBFILE)
-	xelatex $(THESISMAIN).tex
-	-bibtex $(THESISMAIN)
+	biber $(THESISMAIN)
 	rm $(THESISMAIN).pdf
 
 else ifeq ($(METHOD),pdflatex)
@@ -95,7 +94,7 @@ $(THESISMAIN).pdf: $(CLSFILES) $(THESISCONTENTS) $(THESISMAIN).bbl
 
 $(THESISMAIN).bbl: $(BIBFILE)
 	pdflatex $(THESISMAIN).tex
-	-bibtex $(THESISMAIN)
+	-biblatex $(THESISMAIN)
 	rm $(THESISMAIN).pdf
 
 else
@@ -109,7 +108,7 @@ $(THESISMAIN).dvi: $(CLSFILES) $(THESISCONTENTS) $(THESISMAIN).bbl
 
 $(THESISMAIN).bbl: $(BIBFILE)
 	$(TEXI2DVI) $(THESISMAIN).tex
-	-bibtex $(THESISMAIN)
+	-biblatex $(THESISMAIN)
 
 endif
 

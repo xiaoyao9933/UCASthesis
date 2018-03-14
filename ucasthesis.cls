@@ -106,7 +106,7 @@
 \RequirePackage{array}
 \RequirePackage{longtable}
 \RequirePackage{booktabs}
-\RequirePackage[numbers,sort&compress]{natbib}
+
 \RequirePackage{hyperref}
 \ifxetex
   \hypersetup{%
@@ -140,7 +140,7 @@
   pdfborder=0 0 0}
 \urlstyle{same}
 \renewcommand\frontmatter{%
-  \cleardoublepage
+  \scleardoublepage
   \@mainmatterfalse
   \pagenumbering{Roman}
   \pagestyle{ucas@empty}}
@@ -207,8 +207,11 @@
 \setlength{\skip\footins}{15pt}
 \let\ucas@cleardoublepage\cleardoublepage
 \newcommand{\ucas@clearemptydoublepage}{%
-  \clearpage{\pagestyle{empty}\ucas@cleardoublepage}}
+  \clearpage{\pagestyle{ucas@headings}\ucas@cleardoublepage}}
+\newcommand{\ucas@sclearemptydoublepage}{%
+  \clearpage{\pagestyle{ucas@empty}\ucas@cleardoublepage}}
 \let\cleardoublepage\ucas@clearemptydoublepage
+\let\scleardoublepage\ucas@sclearemptydoublepage
 \def\ps@ucas@empty{%
   \let\@oddhead\@empty%
   \let\@evenhead\@empty%
@@ -332,7 +335,7 @@
 \fi
 \renewcommand\chapter{%
   \cleardoublepage%
-  \thispagestyle{ucas@foot}%
+  \thispagestyle{ucas@headings}%
   \global\@topnum\z@%
   \@afterindenttrue%
   \secdef\@chapter\@schapter}
@@ -352,7 +355,7 @@
 \def\@makechapterhead#1{%
   \vspace*{17bp}
   {\parindent \z@ \centering
-    \csname ucas@title@font\endcsname\heiti\sihao[2.41]
+    \bfseries \csname ucas@title@font\endcsname\heiti\sihao[2.41]
     \ifnum \c@secnumdepth >\m@ne
       \@chapapp\hskip1em
     \fi
@@ -364,7 +367,7 @@
 \def\@makeschapterhead#1{%
   \vspace*{17bp}%
   {\parindent \z@ \centering
-   \csname ucas@title@font\endcsname\heiti\sihao[2.41]
+   \bfseries \csname ucas@title@font\endcsname\heiti\sihao[2.41]
      \def\@tempa{#1}
      \def\@tempb{\eabstractname}
      \ifx\@tempa\@tempb\fi
@@ -422,7 +425,7 @@
 
 \renewcommand\tableofcontents{%
   \cleardoublepage
-  \ucas@chapter*{\contentsname}[\scontentsname]
+  \ucas@chapter*[]{\contentsname}[\contentsname]
   \xiaosi[1.5]\@starttoc{toc}\normalsize}
 \ifucas@arialtoc
   \def\ucas@toc@font{\sffamily}
@@ -455,13 +458,13 @@
       \leavevmode
       \advance\leftskip\@tempdima
       \hskip -\leftskip
-      {\csname ucas@toc@font\endcsname\heiti\xiaosi #1} % numberline is called here, and it uses \@tempdima
+      {\csname ucas@toc@font\endcsname\heiti\sihao #1} % numberline is called here, and it uses \@tempdima
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
       \nobreak{\normalcolor #2}\par
       \penalty\@highpenalty
     \endgroup
   \fi}
-\renewcommand*\l@section{\vspace*{1ex}\@dottedtocline{1}{1.2em}{2.1em}}
+\renewcommand*\l@section{\heiti\vspace*{1ex}\@dottedtocline{1}{1.2em}{2.1em}}
 \renewcommand*\l@subsection{\vspace*{1ex}\@dottedtocline{2}{2em}{3em}}
 %%\renewcommand*\l@subsubsection{\vspace*{1ex}\@dottedtocline{3}{3.5em}{3.8em}}
 \def\ucas@define@term#1{
@@ -533,17 +536,17 @@
       \ifucas@secret\hspace{25em}{\sihao[1]\songti 密级：\underline{\makebox[6em]{\ucas@secretcontent}}}\fi}
       \begin{figure}[H]
         \centering
-        \includegraphics[width=128mm,height=21.7mm]{ucaslogo}
+        \includegraphics[width=90mm]{ucaslogo}
       \end{figure}
       \parbox[t][8cm][t]{\paperwidth-8cm}{
       \renewcommand{\baselinestretch}{1.3}
       \begin{center}
-      \yihao\heiti\ucas@apply
+      \yihao\heiti\textbf{\ucas@apply}
       \par\vskip 40bp
-      \sanhao\heiti\ucas@ctitle
+      \xiaosan\heiti\textbf{\ucas@ctitle}
       \end{center}}
 
-\parbox[t][9cm][t]{\textwidth}{{\sihao\songti
+\parbox[t][9cm][t]{\textwidth}{{\bfseries\sihao\songti
 \begin{center}
 \setlength{\ucas@title@width}{4em}
 \setlength{\extrarowheight}{2.5ex}
@@ -579,59 +582,58 @@
     \parbox[t][3.2cm][t]{\paperwidth-7.2cm}{
       \renewcommand{\baselinestretch}{1.5}
       \begin{center}
-        \sanhao\sffamily\ucas@etitle
+        \xiaosan\sffamily\textbf{\ucas@etitle}
       \end{center}}
 
-    \parbox[t][8cm][t]{\paperwidth-7.2cm}{
+    \parbox[t][15cm][t]{\paperwidth-7.2cm}{
     \vspace*{2cm}
       \renewcommand{\baselinestretch}{1.4}
       \begin{center}
         \sihao
-        \rmfamily A \ifucas@master Thesis \else Dissertation \fi
-        Submitted to\\
-        \rmfamily \textbf{The University of Chinese Academy of Sciences}\\
-        \rmfamily in partial fulfillment of the requirement\\
-        \rmfamily for the degree of\\
+        \rmfamily \textbf{A \ifucas@master thesis \else dissertation \fi
+        submitted to}\\
+        \rmfamily \textbf{University of Chinese Academy of Sciences}\\
+        \rmfamily \textbf{in partial fulfillment of the requirement}\\
+        \rmfamily \textbf{for the degree of}\\
         \rmfamily \textbf{\ucas@edegree}\\
-        \rmfamily in \\
-        \rmfamily \textbf{\ucas@emajor}
-      \end{center}}
+        \rmfamily \textbf{in \ucas@emajor}
 
-    \parbox[t][7cm][c]{\paperwidth-7.2cm}{
-      \renewcommand{\baselinestretch}{1.4}
-      \begin{center}
-        \sihao\rmfamily by\\[3bp]
-        \sanhao
+        \sanhao\rmfamily \textbf{By}\\[3bp]
+        \sihao
         \rmfamily \textbf{\ucas@eauthor}\\
         \sihao
-        \rmfamily \textbf{\ifucas@master Thesis \else Dissertation \fi Supervisor: Professor \ucas@esupervisor}
+        \rmfamily \textbf{Supervisor: Professor \ucas@esupervisor}
       \end{center}}
 
     \par\vspace{0.5cm}
     \parbox[t][2cm][b]{\paperwidth-7.2cm}{
     \renewcommand{\baselinestretch}{1.4}
     \begin{center}
-      \sihao\rmfamily\ucas@edepartment\par
-      \sihao\rmfamily\ucas@edate
+      \sihao\rmfamily\textbf{\ucas@edepartment}\par
+      \sihao\rmfamily\textbf{\ucas@edate}
     \end{center}}
   \end{center}}
 \newcommand{\ucas@declare@mk}{%
-\begin{center}\sanhao\heiti{\ucas@declarename}\end{center}
-  \vskip40pt\sihao[2.03]\par
+\begin{center}\sihao\heiti{\ucas@declarename}\end{center}
+  \vskip25pt\xiaosi[2.03]\par
   \ucas@declaretext\par
   \vskip1.5cm
-  \sihao
-  \hspace{11em}\ucas@signature\hspace{6em}\ucas@backdate
+  \xiaosi
+  \hspace{13em}\ucas@signature\par
+  \vskip0.4cm
+  \hspace{13em}\ucas@backdate
 }
 \newcommand{\ucas@authorization@mk}{%
-  \vspace*{0.72cm} % shit code!
-  \begin{center}\sanhao\heiti{\ucas@authtitle}\end{center}
-  \vskip40pt\sihao[2.03]\par
+  %\vspace*{0.72cm} % shit code!
+  \begin{center}\sihao\heiti{\ucas@authtitle}\end{center}
+  \vskip40pt\xiaosi[2.03]\par
   \ucas@authorization\par
-  \ucas@authorizationaddon\par
+  %\ucas@authorizationaddon\par
   \vskip1.5cm
-  \sihao
-  \ucas@authorsig\hspace{6em}\ucas@teachersig\hspace{6em}\ucas@frontdate
+  \xiaosi
+  \hspace{6em}\ucas@authorsig\hspace{6em}\ucas@teachersig\par
+  \vskip0.4cm
+  \hspace{6em}\ucas@backdate\hspace{6em}\ucas@backdate
   }
 \newcommand{\makecover}{
   \phantomsection
@@ -639,17 +641,17 @@
   \normalsize%
   \begin{titlepage}
     \ucas@first@titlepage
-\cleardoublepage
+\scleardoublepage
 \clearpage\ucas@engcover
 
-      \cleardoublepage%
+      \scleardoublepage%
       \begin{list}{}{%
         \topsep\z@%
         \listparindent\parindent%
         \parsep\parskip%
-        \setlength{\itemsep}{5cm}
-        \setlength{\leftmargin}{0.9mm}%
-        \setlength{\rightmargin}{0.9mm}}%
+        \setlength{\itemsep}{3cm}
+        \setlength{\leftmargin}{6mm}%
+        \setlength{\rightmargin}{6mm}}%
       \item[]\ucas@declare@mk
       \item[]\ucas@authorization@mk%
       \end{list}%
@@ -658,9 +660,9 @@
   \ucas@makeabstract
   \let\@tabular\ucas@tabular}
 \newcommand{\ucas@makeabstract}{%
-  \cleardoublepage
-  \ucas@chapter*{\cabstractname}[\csabstractname] % no tocline
-  \pagestyle{ucas@plain}
+  \scleardoublepage
+  \ucas@chapter*[]{\cabstractname}[] % no tocline
+  \pagestyle{ucas@headings}
   \pagenumbering{Roman}
   \ucas@cabstract
   \vskip12bp
@@ -671,7 +673,7 @@
   \ucas@chapter*[]{\eabstractname}[\eabstractname] % no tocline
   \ucas@eabstract
   \vskip12bp
-  \setbox0=\hbox{\textbf{Keywords:\enskip}}
+  \setbox0=\hbox{\xiaosi\textbf{Key Words:\enskip}}
   \noindent
     \box0\ucas@ekeywords}
 \newenvironment{denotation}[1][2.5cm]{
@@ -693,7 +695,7 @@
 
 \newenvironment{ack}{%
     \cleardoublepage
-    \ucas@chapter*{\ucas@ackname}[\ucas@sackname]
+    \ucas@chapter*[\ucas@ackname]{\ucas@sackname}[\ucas@sackname]
   }
 
 \def\ucas@starttoc#1{% #1: float type, prepend type name in \listof*** entry.
@@ -705,7 +707,7 @@
   \cleardoublepage
   \@ifstar
     {\ucas@chapter*[]{\csname list#1name\endcsname}\ucas@starttoc{#1}}
-    {\ucas@chapter*{\csname list#1name\endcsname}\ucas@starttoc{#1}}}
+    {\ucas@chapter*[]{\csname list#1name\endcsname}\ucas@starttoc{#1}}}
 \renewcommand\listoffigures{\ucas@listof{figure}}
 \renewcommand*\l@figure{\vspace*{1ex}\@dottedtocline{1}{0em}{4em}}
 \renewcommand\listoftables{\ucas@listof{table}}
@@ -716,19 +718,12 @@
                   {\protect\numberline{#1}}}
 \newcommand\listofequations{\ucas@listof{equation}}
 \let\l@equation\l@figure
-\bibpunct{[}{]}{,}{s}{}{,}
-\renewcommand\NAT@citesuper[3]{\ifNAT@swa%
-  \unskip\kern\p@\textsuperscript{\NAT@@open #1\NAT@@close}%
-  \if*#3*\else\ (#3)\fi\else #1\fi\endgroup}
-\DeclareRobustCommand\onlinecite{\@onlinecite}
-\def\@onlinecite#1{\begingroup\let\@cite\NAT@citenum\citep{#1}\endgroup}
-\renewcommand{\cite}[1]{{\onlinecite{#1}}}
 \def\ucasdot{\unskip.}
 \def\ucasmasterbib{[硕士学位论文]}
 \def\ucasphdbib{[博士学位论文]}
 \renewenvironment{thebibliography}[1]{%
    \ucas@chapter*{\bibname}%
-   \wuhao[1.5]
+   \erhao[1.5]
    \list{\@biblabel{\@arabic\c@enumiv}}%
         {\renewcommand{\makelabel}[1]{##1\hfill}
          \settowidth\labelwidth{1.1cm}
