@@ -1,6 +1,6 @@
 FAQ
 ===
-从计算所旧版模板到国科大统一模板的迁移工作，稍微复杂，请务必参看以下链接。
+** 从计算所旧版模板到国科大统一模板的迁移工作，稍微复杂，请务必参看以下链接。**
 
 [使用前必读的问题](https://github.com/xiaoyao9933/UCASthesis/wiki)
 
@@ -52,26 +52,26 @@ version 2004/10/01 or later.
 1. 如果您使用编辑器IDE环境如TexWorks，Texstudio，Winedt等，请务必将编译方式设置为latexmk方式， 如果没有则设置为xelatex + biber方式。如果以上两种方式都没有，则设置为xelatex + biblatex, 然后在IDE preference里面将 biblatex命令替换为biber。
 
 2. 手动编译示例文档
-
-   xelatex main
-   biber main
-   xelatex main
-   xelatex main
+          
+       xelatex main
+       biber main
+       xelatex main
+       xelatex main
 
 3. 自动编译文档(方法1)
 
-    latexmk main.tex
+       latexmk main.tex
 
 4. 自动编译文档(方法2)
 
-    make thesis
+       make thesis
 
 5. 编写自己的论文
 
-     main.tex   主控文档
-     data/      论文具体内容
-     ref/       参考文献目录
-     figures/   图片目录
+       main.tex   主控文档
+       data/      论文具体内容
+       ref/       参考文献目录
+       figures/   图片目录
    
 
 如何获取/升级
