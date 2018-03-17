@@ -81,9 +81,9 @@
 \begin{table}[htb]
   \centering
   \begin{minipage}[t]{0.8\linewidth} % 如果想在表格中使用脚注，minipage是个不错的办法
-  \caption[模板文件]{模板文件。如果表格的标题很长，那么在表格索引中就会很不美
+  \bicaption[模板文件]{模板文件。如果表格的标题很长，那么在表格索引中就会很不美
     观，所以要像 chapter 那样在前面用中括号写一个简短的标题。这个标题会出现在索
-    引中。}
+    引中。}[Template File]{Template File}
   \label{tab:template-files}
     \begin{tabular*}{\linewidth}{lp{10cm}}
       \toprule[1.5pt]
@@ -111,7 +111,7 @@
 不错的方法，如果你不喜欢脚注。那么完全可以在表格后面自己写注释，比如表~\ref{tab:tabexamp1}。
 \begin{table}[htbp]
   \centering
-  \caption{复杂表格示例 1}
+  \bicaption{复杂表格示例 1}{Complex Table Demo 1}
   \label{tab:tabexamp1}
   \begin{minipage}[t]{0.8\textwidth} 
     \begin{tabularx}{\linewidth}{|l|X|X|X|X|}
@@ -152,7 +152,7 @@
 \begin{table}[htbp]
 \noindent\begin{minipage}{0.5\textwidth}
 \centering
-\caption{第一个并排子表格}
+\bicaption{第一个并排子表格}{The First Subtable}
 \label{tab:parallel1}
 \begin{tabular}{p{2cm}p{2cm}}
 \toprule[1.5pt]
@@ -162,7 +162,7 @@
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
 \centering
-\caption{第二个并排子表格}
+\bicaption{第二个并排子表格}{The Second Subtable}
 \label{tab:parallel2}
 \begin{tabular}{p{2cm}p{2cm}}
 \toprule[1.5pt]
@@ -189,9 +189,9 @@
 
 \begin{table}[htbp]
 \centering
-\caption{并排子表格}
+\bicaption{并排子表格}{Subtable}
 \label{tab:subtable}
-\subcaptionbox{第一个子表格}
+\bisubcaptionbox{第一个子表格}{The First Subtable}
 {
 \begin{tabular}{p{2cm}p{2cm}}
 \toprule[1.5pt]
@@ -200,7 +200,7 @@
 \end{tabular}
 }
 \hskip2cm
-\subcaptionbox{第二个子表格}
+\subcaptionbox{第二个子表格}{The Second Subtable}
 {
 \begin{tabular}{p{2cm}p{2cm}}
 \toprule[1.5pt]
@@ -214,7 +214,7 @@
 同样可以排出来非常复杂非常漂亮的表格。请参看表~\ref{tab:tabexamp2}。
 \begin{table}[htbp]
   \centering\dawu[1.3]
-  \caption{复杂表格示例 2}
+  \bicaption{复杂表格示例 2}{Complex Table Demo 2}
   \label{tab:tabexamp2}
   \begin{tabular}[c]{|c|m{0.8in}|c|c|c|c|c|}\hline
     \multicolumn{2}{|c|}{Network Topology} & \# of nodes & 
@@ -248,64 +248,18 @@
 路来对待这种所见非所得的排版工具，结果被折腾的焦头烂额，疲惫不堪。
 
 如果您要排版的表格长度超过一页，那么推荐使用 \textsf{longtable} 或者 \textsf{supertabular} 
-宏包，模板对 \textsf{longtable} 进行了相应的设置，所以用起来可能简单一些。
-表~\ref{tab:performance} 就是 \textsf{longtable} 的简单示例。
-\begin{longtable}[c]{c*{6}{r}}
-\caption{实验数据}\label{tab:performance}\\
-\toprule[1.5pt]
- 测试程序 & \multicolumn{1}{c}{正常运行} & \multicolumn{1}{c}{同步} & \multicolumn{1}{c}{检查点} & \multicolumn{1}{c}{卷回恢复}
-& \multicolumn{1}{c}{进程迁移} & \multicolumn{1}{c}{检查点} \\
-& \multicolumn{1}{c}{时间 (s)}& \multicolumn{1}{c}{时间 (s)}&
-\multicolumn{1}{c}{时间 (s)}& \multicolumn{1}{c}{时间 (s)}& \multicolumn{1}{c}{
-  时间 (s)}&  文件（KB）\\\midrule[1pt]
-\endfirsthead
-\multicolumn{7}{c}{续表~\thetable\hskip1em 实验数据}\\
-\toprule[1.5pt]
- 测试程序 & \multicolumn{1}{c}{正常运行} & \multicolumn{1}{c}{同步} & \multicolumn{1}{c}{检查点} & \multicolumn{1}{c}{卷回恢复}
-& \multicolumn{1}{c}{进程迁移} & \multicolumn{1}{c}{检查点} \\
-& \multicolumn{1}{c}{时间 (s)}& \multicolumn{1}{c}{时间 (s)}&
-\multicolumn{1}{c}{时间 (s)}& \multicolumn{1}{c}{时间 (s)}& \multicolumn{1}{c}{
-  时间 (s)}&  文件（KB）\\\midrule[1pt]
-\endhead
-\hline
-\multicolumn{7}{r}{续下页}
-\endfoot
-\endlastfoot
-CG.A.2 & 23.05 & 0.002 & 0.116 & 0.035 & 0.589 & 32491 \\
-CG.A.4 & 15.06 & 0.003 & 0.067 & 0.021 & 0.351 & 18211 \\
-CG.A.8 & 13.38 & 0.004 & 0.072 & 0.023 & 0.210 & 9890 \\
-CG.B.2 & 867.45 & 0.002 & 0.864 & 0.232 & 3.256 & 228562 \\
-CG.B.4 & 501.61 & 0.003 & 0.438 & 0.136 & 2.075 & 123862 \\
-CG.B.8 & 384.65 & 0.004 & 0.457 & 0.108 & 1.235 & 63777 \\
-MG.A.2 & 112.27 & 0.002 & 0.846 & 0.237 & 3.930 & 236473 \\
-MG.A.4 & 59.84 & 0.003 & 0.442 & 0.128 & 2.070 & 123875 \\
-MG.A.8 & 31.38 & 0.003 & 0.476 & 0.114 & 1.041 & 60627 \\
-MG.B.2 & 526.28 & 0.002 & 0.821 & 0.238 & 4.176 & 236635 \\
-MG.B.4 & 280.11 & 0.003 & 0.432 & 0.130 & 1.706 & 123793 \\
-MG.B.8 & 148.29 & 0.003 & 0.442 & 0.116 & 0.893 & 60600 \\
-LU.A.2 & 2116.54 & 0.002 & 0.110 & 0.030 & 0.532 & 28754 \\
-LU.A.4 & 1102.50 & 0.002 & 0.069 & 0.017 & 0.255 & 14915 \\
-LU.A.8 & 574.47 & 0.003 & 0.067 & 0.016 & 0.192 & 8655 \\
-LU.B.2 & 9712.87 & 0.002 & 0.357 & 0.104 & 1.734 & 101975 \\
-LU.B.4 & 4757.80 & 0.003 & 0.190 & 0.056 & 0.808 & 53522 \\
-LU.B.8 & 2444.05 & 0.004 & 0.222 & 0.057 & 0.548 & 30134 \\
-EP.A.2 & 123.81 & 0.002 & 0.010 & 0.003 & 0.074 & 1834 \\
-EP.A.4 & 61.92 & 0.003 & 0.011 & 0.004 & 0.073 & 1743 \\
-EP.A.8 & 31.06 & 0.004 & 0.017 & 0.005 & 0.073 & 1661 \\
-EP.B.2 & 495.49 & 0.001 & 0.009 & 0.003 & 0.196 & 2011 \\
-EP.B.4 & 247.69 & 0.002 & 0.012 & 0.004 & 0.122 & 1663 \\
-EP.B.8 & 126.74 & 0.003 & 0.017 & 0.005 & 0.083 & 1656 \\
-\bottomrule[1.5pt]
-\end{longtable}
+宏包，模板对 \textsf{longtable}。但是\textsf{longtable}和\textsf{bicaption}有冲突，需要
+按照 \url{https://tex.stackexchange.com/questions/283980/bicaption-for-longtables-doesnt-work}帖子
+中的指示手工修复你的\textsf{bicaption}包文件。
 
 \subsection{其它}
 \label{sec:tableother}
-有的同学不想让某个表格或者图片出现在索引里面，那么请使用命令 \verb|\caption*{}|，
+有的同学不想让某个表格或者图片出现在索引里面，那么请使用命令 \verb|\bicaption*{}|，
 这个命令不会给表格编号，也就是出来的只有标题文字而没有“表~XX”，“图~XX”，否则
 索引里面序号不连续就显得不伦不类，这也是 \LaTeX{} 里星号命令默认的规则。
 
 有这种需求的多是本科同学的英文资料翻译部分，如果你觉得附录中英文原文中的表格和图
-片显示成“  表”和“图”很不协调的话，一个很好的办法就是用 \verb|\caption*|，参数
+片显示成“  表”和“图”很不协调的话，一个很好的办法就是用 \verb|\bicaption*|，参数
 随便自己写，比如不守规矩的表~1.111 和图~1.111 能满足这种特殊需要（可以参看附录部
 分）。
 \begin{table}[ht]
@@ -516,14 +470,15 @@ V_j & = v_j, & \qquad X_j & = x_j,
 当然参考文献可以直接写 bibitem，虽然费点功夫，但是好控制，各种格式可以自己随意改
 写。
 
-本模板推荐使用 BIB\TeX，样式文件为 ucasbib.bst，基本符合学校的参考文献格式（如专利
-等引用未加详细测试）。看看这个例子，关于书的\cite{tex, companion, ColdSources}，
+本模板使用 Biber进行文献编译，基本符合2015国标的参考文献格式。默认情况下，按照国科大的指导标准，
+使用数字顺序的引用方式没有严格限制，这也是最方便的引用途径。 如果您一定要使用作者年份制引用，请参照参考文献模板
+的说明进行使用。
+看看这个例子，关于书的\cite{tex, companion, ColdSources}，
 还有这些\cite{Krasnogor2004e, clzs, zjsw}，关于杂志的\cite{ELIDRISSI94,
   MELLINGER96, SHELL02}，硕士论文\cite{zhubajie, metamori2004}，博士论文
 \cite{shaheshang, FistSystem01}，标准文件\cite{IEEE-1363}，会议论文\cite{DPMG,kocher99}，技术报告\cite{NPB2}。中文参
-考文献\cite{cnarticle}应增加 \texttt{lang=``zh''} 字段，以便进行相应处理。另
-外，这个 bst 对中文文献\cite{cnproceed}的支持并不是十全十美，如果有不如意的地方，
-请手动修改 bbl 文件。
+考文献\cite{cnarticle}应增加 \texttt{lang=``zh''} 字段，以便进行相应处理。更多参考文献
+模板使用方法请参照参考文献模板作者说明 \url{https://github.com/hushidong/biblatex-gb7714-2015}。
 
 \section{公式}
 \label{sec:equation}

@@ -1,5 +1,7 @@
 FAQ
 ===
+从计算所旧版模板到国科大统一模板的迁移工作，稍微复杂，请务必参看以下链接。
+
 [使用前必读的问题](https://github.com/xiaoyao9933/UCASthesis/wiki)
 
 What's it?
@@ -43,19 +45,25 @@ version 2004/10/01 or later.
 
     python zhfonts.py
 
-4. 您可以使用各种编辑器环境，但是要确保使用XeLatex方式进行编译。 pdflatex方式我已经不再进行测试了，所以不保证各种环境下都正常工作。
+4. 您可以使用各种编辑器环境，但是要确保使用XeLatex方式进行编译。
 
 使用方法
 ========
-1. 编译示例文档
+1. 如果您使用编辑器IDE环境如TexWorks，Texstudio，Winedt等，请务必将编译方式设置为latexmk方式， 如果没有则设置为xelatex + biber方式。如果以上两种方式都没有，则设置为xelatex + biblatex, 然后在IDE preference里面将 biblatex命令替换为biber。
+
+2. 手动编译示例文档
    xelatex main
-   bibtex main
+   biber main
    xelatex main
    xelatex main
 
-   说明：也可以使用 pdflatex/latex+dvipdfmx 生成文档。
+3. 自动编译文档(方法1)
+    latexmk main.tex
 
-2. 编写自己的论文
+4. 自动编译文档(方法2)
+    make thesis
+
+5. 编写自己的论文
    参考示例文档：
      main.tex   主控文档
      data/      论文具体内容
@@ -67,7 +75,7 @@ version 2004/10/01 or later.
 =============
 1. 如需以git方式获取，git clone https://github.com/xiaoyao9933/UCASthesis
 2. 如需直接获取压缩包文件，请下载 https://github.com/xiaoyao9933/UCASthesis/archive/master.zip
-3. 建议通过git pull方式更新模板，如果你之前已经完成论文的一部分写作，则可以通过下载新版模板包里的ucasthesis.cls、ucasthesis.cfg以及ucasthesis.dtx文件，替换至你的论文目录中完成模板更新；也可以通过下载新版模板后，拷贝入含有写作内容的main.tex,data/figures/ref目录进行更新。
+3. 建议通过git pull方式更新模板，如果你之前已经完成论文的一部分写作，则可以通过下载新版模板包里的ucasthesis.cls、ucasthesis.cfg以及ucasthesis.dtx文件，替换至你的论文目录中完成模板更新；也可以通过下载新版模板后，拷贝入含有写作内容的main.tex,data/figures/ref目录进行更新。从计算所旧版模板到国科大统一模板的迁移工作，稍微复杂，请务必参看 [FAQ](https://github.com/xiaoyao9933/UCASthesis/wiki)。
 
 
 Makefile Howto (by xiaoyao9933 & edyfox & littleleo)
@@ -88,13 +96,7 @@ Makefile Howto (by xiaoyao9933 & edyfox & littleleo)
 
 Makefile：
 
-    使用方法：
-
-        make [{all|thesis|spine|doc|clean|distclean}] \
-            [METHOD={xelatex|pdflatex|dvipdfmx}] \
-            [TEXI2DVI=<tex2dvi>]
-
-    参数说明：
+    使用说明：
 
         make all       等于 make thesis && make spine && make doc；
         make cls       生成模板文件，相当于 make -f thesis.mak cls；
@@ -102,19 +104,6 @@ Makefile：
         make spine     生成书脊，相当于 make -f spine.mak；
         make doc       生成使用说明书，相当于 make -f doc.mak；
         make clean     表示清除除了 pdf 外的所有中间文件和目标文件；
-        make distclean 表示清除包括 pdf 在内的所有中间文件和目标文件。
 
-        METHOD 参数用来指定生成 pdf 的方式，
-
-        METHOD=xelatex  表示使用 xelatex 引擎编译生成 pdf；
-        METHOD=pdflatex 表示使用 pdflatex 引擎编译生成 pdf，请确保有相应的cjk字体配置；
-        METHOD=dvipdfmx 表示使用 texi2dvi -> dvipdfmx 的方式生成 pdf，请确保有相应的cjk字体配置；
-
-        如果缺省，则采用 xelatex 方式，同时我也建议只使用该方式编译。
-
-        TEXI2DVI 表示 texi2dvi 实用工具的文件名，该工具的作用是自动重复运行
-        latex 若干遍，直至所有交叉引用都正确为止。在有的发行版中该工具的文件名
-        不叫 texi2dvi，譬如 CTeX 下的这个工具就叫 texify。遇到这种情况你可以在
-        命令行通过 TEXI2DVI=texify 命令指定使用其它的 texi2dvi 工具。
 
 

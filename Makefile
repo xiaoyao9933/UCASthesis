@@ -39,7 +39,6 @@ $(CLSFILES): $(SOURCES)
 
 doc: $(PACKAGE).pdf
 
-ifeq ($(METHOD),xelatex)
 
 $(PACKAGE).pdf: $(CLSFILES)
 	xelatex $(PACKAGE).dtx
@@ -47,71 +46,16 @@ $(PACKAGE).pdf: $(CLSFILES)
 	makeindex -s gglo.ist -o $(PACKAGE).gls $(PACKAGE).glo
 	xelatex $(PACKAGE).dtx
 	xelatex $(PACKAGE).dtx
-
-else ifeq ($(METHOD),pdflatex)
-
-$(PACKAGE).pdf: $(CLSFILES)
-	pdflatex $(PACKAGE).dtx
-	makeindex -s gind.ist -o $(PACKAGE).ind $(PACKAGE).idx
-	makeindex -s gglo.ist -o $(PACKAGE).gls $(PACKAGE).glo
-	pdflatex $(PACKAGE).dtx
-	pdflatex $(PACKAGE).dtx
-
-else
-
-$(PACKAGE).dvi: $(CLSFILES)
-	latex $(PACKAGE).dtx
-	makeindex -s gind.ist -o $(PACKAGE).ind $(PACKAGE).idx
-	makeindex -s gglo.ist -o $(PACKAGE).gls $(PACKAGE).glo
-	latex $(PACKAGE).dtx
-	latex $(PACKAGE).dtx
-
-$(PACKAGE).pdf: $(PACKAGE).dvi
-	latex $(PACKAGE).dtx
-	dvipdfmx  $(PACKAGE).dvi
-
-endif
 
 ###### for thesis
 
 thesis: $(THESISMAIN).pdf
 
-ifeq ($(METHOD),xelatex)
-
-$(THESISMAIN).pdf: $(CLSFILES) $(THESISCONTENTS) $(THESISMAIN).bbl
+$(THESISMAIN).pdf: $(CLSFILES) $(THESISCONTENTS)
 	xelatex $(THESISMAIN).tex
-	xelatex $(THESISMAIN).tex
-
-$(THESISMAIN).bbl: $(BIBFILE)
 	biber $(THESISMAIN)
-	rm $(THESISMAIN).pdf
-
-else ifeq ($(METHOD),pdflatex)
-
-$(THESISMAIN).pdf: $(CLSFILES) $(THESISCONTENTS) $(THESISMAIN).bbl
-	pdflatex $(THESISMAIN).tex
-	pdflatex $(THESISMAIN).tex
-
-$(THESISMAIN).bbl: $(BIBFILE)
-	pdflatex $(THESISMAIN).tex
-	-biblatex $(THESISMAIN)
-	rm $(THESISMAIN).pdf
-
-else
-
-$(THESISMAIN).pdf: $(THESISMAIN).dvi
-	latex $(THESISMAIN).tex
-	dvipdfmx $(THESISMAIN).dvi
-
-$(THESISMAIN).dvi: $(CLSFILES) $(THESISCONTENTS) $(THESISMAIN).bbl
-	$(TEXI2DVI) $(THESISMAIN).tex
-
-$(THESISMAIN).bbl: $(BIBFILE)
-	$(TEXI2DVI) $(THESISMAIN).tex
-	-biblatex $(THESISMAIN)
-
-endif
-
+	xelatex $(THESISMAIN).tex
+	xelatex $(THESISMAIN).tex
 
 figures/%.eps: figures/%.jpg
 	convert $^ -compress none eps2:$@
@@ -121,26 +65,8 @@ figures/%.eps: figures/%.fig
 ###### for spine
 spine: $(SPINEMAIN).pdf
 
-ifeq ($(METHOD),xelatex)
-
 $(SPINEMAIN).pdf: $(CLSFILES) $(SPINECONTENTS)
 	xelatex $(SPINEMAIN).tex
-
-else ifeq ($(METHOD),pdflatex)
-
-$(SPINEMAIN).pdf: $(CLSFILES) $(SPINECONTENTS)
-	pdflatex $(SPINEMAIN).tex
-
-else
-
-$(SPINEMAIN).dvi: $(CLSFILES) $(SPINECONTENTS)
-	$(TEXI2DVI) $(SPINEMAIN).tex
-
-$(SPINEMAIN).pdf: $(SPINEMAIN).dvi
-	latex $(SPINEMAIN).tex
-	dvipdfmx $(SPINEMAIN).dvi
-
-endif
 
 clean: 
 	-@rm -f \
@@ -164,17 +90,10 @@ clean:
 		*.lof \
 		*.lot \
 		*.loe \
+		*.bcf \
+		*.xml \
+		*.fls \
+		*.fdb_latexmk \
 		data/*.aux \
 		$(EPSGEN) \
 		dtx-style.sty
-
-distclean: clean
-	-@rm -f *.cls *.cfg
-	-@rm -f *.pdf *.tar.gz
-
-dist:
-	@if [ -z "$(VERSION)" ]; then \
-	    echo "Usage: make dist VERSION=<version#>"; \
-	else \
-	    ./makedist.sh $(VERSION) UTF8; \
-	fi

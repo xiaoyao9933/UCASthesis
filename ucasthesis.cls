@@ -25,6 +25,7 @@
 %% through LaTeX.
 %% 
 
+
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{ucasthesis}
 [2012/07/28 4.8dev University of Chinese Academy of Sciences Thesis Template]
@@ -314,19 +315,22 @@
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.60}
+\usepackage[list=off]{bicaption}
 \let\old@tabular\@tabular
-\def\ucas@tabular{\dawu[1.5]\old@tabular}
-\DeclareCaptionLabelFormat{ucas}{{\dawu[1.5]\songti #1~\rmfamily #2}}
+\def\ucas@tabular{\wuhao[1.5]\old@tabular}
+\DeclareCaptionLabelFormat{ucas}{{#1~\rmfamily #2}}
 \DeclareCaptionLabelSeparator{ucas}{\hspace{1em}}
-\DeclareCaptionFont{ucas}{\dawu[1.5]}
-\captionsetup{labelformat=ucas,labelsep=ucas,font=ucas}
+\DeclareCaptionFont{ucas}{\heiti \wuhao[1.5]}
+\captionsetup{labelformat=ucas,labelsep=ucas,labelfont=ucas,font=ucas}
 \captionsetup[table]{position=top,belowskip={12bp-\intextsep},aboveskip=6bp}
 \captionsetup[figure]{position=bottom,belowskip={12bp-\intextsep},aboveskip=6bp}
 \captionsetup[sub]{font=ucas,skip=6bp}
+\captionsetup[figure][bi-second]{name=Figure} %设置图的英文编号前缀
+\captionsetup[table][bi-second]{name=Table} %设置表的英文编号前缀
 \renewcommand{\thesubfigure}{(\alph{subfigure})}
 \renewcommand{\thesubtable}{(\alph{subtable})}
 \let\ucas@LT@array\LT@array
-\def\LT@array{\dawu[1.5]\ucas@LT@array} % set default font size
+\def\LT@array{\wuhao[1.5]\ucas@LT@array} % set default font size
 \def\hlinewd#1{%
   \noalign{\ifnum0=`}\fi\hrule \@height #1 \futurelet
     \reserved@a\@xhline}
@@ -546,7 +550,7 @@
       \xiaosan\heiti\textbf{\ucas@ctitle}
       \end{center}}
 
-\parbox[t][9cm][t]{\textwidth}{{\bfseries\sihao\songti
+\parbox[t][9cm][t]{\textwidth}{{\sihao\heiti
 \begin{center}
 \setlength{\ucas@title@width}{4em}
 \setlength{\extrarowheight}{2.5ex}
@@ -567,7 +571,7 @@
 \end{tabular}
 \end{center}}}
   \begin{center}
-    {\vskip 3ex\sihao \songti \ucas@cdate}
+    {\vskip 3ex\sihao \heiti \ucas@cdate}
   \end{center}
 \end{center}} % end of titlepage
 \newcommand{\ucas@engcover}{%

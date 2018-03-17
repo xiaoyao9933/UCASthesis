@@ -29,7 +29,8 @@ jPicEdt, jaxdraw 等等。
 \subsection{插图}
 \label{sec:graphs}
 
-强烈推荐《\LaTeXe 插图指南》！关于子图形的使用细节请参看 \textsf{subcaption} 宏包的说明文档。
+强烈推荐《\LaTeXe 插图指南》！关于子图形的使用细节请参看 \textsf{subcaption}
+与 \textsf{bicaption} 宏包的说明文档。
 
 \subsubsection{一个图形}
 \label{sec:onefig}
@@ -40,7 +41,7 @@ jPicEdt, jaxdraw 等等。
 \begin{figure}[H] % use float package if you want it here
   \centering
   \includegraphics{hello}
-  \caption{利用 Xfig 制图}
+  \bicaption{利用 Xfig 制图}{Image with Xfig}
   \label{fig:xfig1}
 \end{figure}
 
@@ -67,27 +68,27 @@ jPicEdt, jaxdraw 等等。
 \verb|\subfigure| 和 \verb|\subtable|。
 \begin{figure}[h]
   \centering%
-  \subcaptionbox{第一个小图形\label{fig:subfig1}}
+  \bisubcaptionbox{第一个小图形\label{fig:subfig1}}{The First Figure}
   [3cm] %标题的长度，超过则会换行，如下一个小图。
     {\includegraphics[height=3cm]{thu-fig-logo}}
       \hspace{4em}% 这里记得不要空行，否则会变为垂直的两个图
-  \subcaptionbox{第二个小图形，注意这个图略矮些。如果标题很长的话，它会自动换行\label{fig:subfig2}}
+  \bisubcaptionbox{第二个小图形，注意这个图略矮些。如果标题很长的话，它会自动换行\label{fig:subfig2}}{The Second Figure}
       {\includegraphics[height=2cm]{thu-text-logo}}
-  \caption{包含子图形的大图形(subcaptionbox示例)}
+  \bicaption{包含子图形的大图形(subcaptionbox示例)}{Large Figure}
   \label{fig:big1-subcaptionbox}
 \end{figure}
 \begin{figure}[h]
   \centering%
   \begin{subfigure}{3cm}
     \includegraphics[height=3cm]{thu-fig-logo}
-    \caption{第一个小图形}
+    \bicaption{第一个小图形}{The first Small Figure}
   \end{subfigure}
   \hspace{4em}%
   \begin{subfigure}{0.5\textwidth}
     \includegraphics[height=2cm]{thu-text-logo}
-    \caption{第二个小图形，注意这个图略矮些。subfigure中同一行的子图在顶端对齐。}
+    \bicaption{第二个小图形，注意这个图略矮些。subfigure中同一行的子图在顶端对齐。}{The Second Small Figure}
   \end{subfigure}
-  \caption{包含子图形的大图形(subfigure示例)}
+  \bicaption{包含子图形的大图形(subfigure示例)}{Big Figure}
   \label{fig:big1-subfigure}
 \end{figure}
 古之学者必有师。师者，所以传道受业解惑也。人非生而知之者，孰能无惑？惑而不从师，
@@ -111,13 +112,13 @@ jPicEdt, jaxdraw 等等。
 \begin{minipage}{0.48\textwidth}
   \centering
   \includegraphics[height=2cm]{thu-whole-logo}
-  \caption{并排第一个图}
+  \bicaption{并排第一个图}{The First Figure}
   \label{fig:parallel1}
 \end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}
   \centering
   \includegraphics[height=2cm]{thu-whole-logo}
-  \caption{并排第二个图}
+  \bicaption{并排第二个图}{The Second Figure}
   \label{fig:parallel2}
 \end{minipage}
 \end{figure}
