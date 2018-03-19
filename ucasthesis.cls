@@ -182,7 +182,7 @@
 \ucas@define@fontsize{qihao}{5.5bp}
 \ucas@define@fontsize{bahao}{5bp}
 \renewcommand\normalsize{%
-  \@setfontsize\normalsize{12bp}{20bp}
+  \@setfontsize\normalsize{12bp}{23bp}
   \abovedisplayskip=10bp \@plus 2bp \@minus 2bp
   \abovedisplayshortskip=10bp \@plus 2bp \@minus 2bp
   \belowdisplayskip=\abovedisplayskip
@@ -195,11 +195,11 @@
 \setlength{\textheight}{\paperheight}
 \setlength\marginparwidth{0cm}
 \setlength\marginparsep{0cm}
-\addtolength{\textwidth}{-5cm}
-\setlength{\topmargin}{1.75cm-1in}
-\setlength{\oddsidemargin}{2.5cm-1in}
+\addtolength{\textwidth}{-6.72cm}
+\setlength{\topmargin}{1.5cm-1in}
+\setlength{\oddsidemargin}{3.3cm-1in}
 \setlength{\footskip}{0.6cm}
-\setlength{\headsep}{0.5cm}
+\setlength{\headsep}{0.2cm}
 \addtolength{\textheight}{-5.25cm}
 
 \setlength{\evensidemargin}{\oddsidemargin}
@@ -208,11 +208,11 @@
 \setlength{\skip\footins}{15pt}
 \let\ucas@cleardoublepage\cleardoublepage
 \newcommand{\ucas@clearemptydoublepage}{%
-  \clearpage{\pagestyle{ucas@sfoot}\ucas@cleardoublepage}}
+  \clearpage{\pagestyle{ucas@headings}\ucas@cleardoublepage}}
 \newcommand{\ucas@sclearemptydoublepage}{%
   \clearpage{\pagestyle{ucas@empty}\ucas@cleardoublepage}}
 \newcommand{\ucas@fclearemptydoublepage}{%
-  \clearpage{\pagestyle{ucas@foot}\ucas@cleardoublepage}}
+  \clearpage{\pagestyle{ucas@plain}\ucas@cleardoublepage}}
 \let\cleardoublepage\ucas@clearemptydoublepage
 \let\scleardoublepage\ucas@sclearemptydoublepage
 \let\fcleardoublepage\ucas@fclearemptydoublepage
@@ -239,7 +239,7 @@
   \def\@oddfoot{\hfil\xiaowu\thepage\hfil}%
   \def\@evenhead{\vbox to\headheight{%
       \hb@xt@\textwidth{\xiaowu\songti%
-       \hfill \leftmark \hfill}%
+       \hfill \headingtitle \hfill}%
       \vskip2pt\hbox{\vrule width\textwidth height0.4pt depth0pt}}}
   \def\@oddfoot{\hfil\xiaowu\thepage\hfil}%
   \let\@evenfoot=\@oddfoot}
@@ -663,8 +663,8 @@
         \listparindent\parindent%
         \parsep\parskip%
         \setlength{\itemsep}{3cm}
-        \setlength{\leftmargin}{6mm}%
-        \setlength{\rightmargin}{6mm}}%
+        \setlength{\leftmargin}{-3mm}%
+        \setlength{\rightmargin}{-3mm}}%
       \item[]\ucas@declare@mk
       \item[]\ucas@authorization@mk%
       \end{list}%
