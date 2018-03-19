@@ -12,8 +12,6 @@ make it easy to write thesises for either master or doctor. This template pacagg
 ThuThesis.
 
 UCASThesis 是中国科学院大学学位论文 LaTeX 模板，支持硕士、博士论文格式。该模板基于清华大学ThuThesis二次开发。
-本模板目前已经针对中国科学院计算技术研究所的论文模板进行调整，但由于中科院各院所的模板规范并非完全一致，
-其余院所的同学可能需要进行一些必要的修改。
 
 版权须知
 ========
@@ -78,7 +76,7 @@ version 2004/10/01 or later.
 =============
 1. 如需以git方式获取，git clone https://github.com/xiaoyao9933/UCASthesis
 2. 如需直接获取压缩包文件，请下载 https://github.com/xiaoyao9933/UCASthesis/archive/master.zip
-3. 建议通过git pull方式更新模板，如果你之前已经完成论文的一部分写作，则可以通过下载新版模板包里的ucasthesis.cls、ucasthesis.cfg以及ucasthesis.dtx文件，替换至你的论文目录中完成模板更新；也可以通过下载新版模板后，拷贝入含有写作内容的main.tex,data/figures/ref目录进行更新。从计算所旧版模板到国科大统一模板的迁移工作，稍微复杂，请务必参看 [FAQ](https://github.com/xiaoyao9933/UCASthesis/wiki)。
+3. 从计算所旧版模板到国科大统一模板的迁移工作，稍微复杂，请务必参看 [FAQ](https://github.com/xiaoyao9933/UCASthesis/wiki)。
 
 
 Makefile Howto (by xiaoyao9933 & edyfox & littleleo)

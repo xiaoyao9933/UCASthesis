@@ -146,15 +146,15 @@
   \pagenumbering{Roman}
   \pagestyle{ucas@empty}}
 \renewcommand\mainmatter{%
-  \cleardoublepage
+  \fcleardoublepage
   \@mainmattertrue
   \pagenumbering{arabic}
   \pagestyle{ucas@headings}}
-  %#\ifucas@bachelor\pagestyle{ucas@plain}\else\pagestyle{ucas@headings}\fi}
+  %#\ifucas@bachelor\pagestyle{ucas@plain}\else\pagestyle{ucas@plain}\fi}
 \renewcommand\backmatter{%
   \cleardoublepage
-  \pagenumbering{roman}
-  \pagestyle{ucas@plain}
+  %\pagenumbering{arabic}
+  \pagestyle{ucas@headings}
   \@mainmattertrue}
 \newlength\ucas@linespace
 \newcommand{\ucas@choosefont}[2]{%
@@ -208,11 +208,15 @@
 \setlength{\skip\footins}{15pt}
 \let\ucas@cleardoublepage\cleardoublepage
 \newcommand{\ucas@clearemptydoublepage}{%
-  \clearpage{\pagestyle{ucas@headings}\ucas@cleardoublepage}}
+  \clearpage{\pagestyle{ucas@sfoot}\ucas@cleardoublepage}}
 \newcommand{\ucas@sclearemptydoublepage}{%
   \clearpage{\pagestyle{ucas@empty}\ucas@cleardoublepage}}
+\newcommand{\ucas@fclearemptydoublepage}{%
+  \clearpage{\pagestyle{ucas@foot}\ucas@cleardoublepage}}
 \let\cleardoublepage\ucas@clearemptydoublepage
 \let\scleardoublepage\ucas@sclearemptydoublepage
+\let\fcleardoublepage\ucas@fclearemptydoublepage
+
 \def\ps@ucas@empty{%
   \let\@oddhead\@empty%
   \let\@evenhead\@empty%
@@ -223,14 +227,19 @@
   \let\@evenhead\@empty%
   \def\@oddfoot{\hfil\xiaowu\thepage\hfil}%
   \let\@evenfoot=\@oddfoot}
+\def\ps@ucas@sfoot{%
+  \let\@oddhead\@empty%
+  \let\@evenhead\@empty%
+  \def\@oddfoot{\hfil\xiaowu\thepage}%
+  \def\@evenfoot{\xiaowu\thepage\hfil}}
 \def\ps@ucas@plain{%
   \def\@oddhead{\vbox to\headheight{%
-    \hb@xt@\textwidth{\hfill\xiaowu\songti\ucas@ctitle：\leftmark\hfill}%
+    \hb@xt@\textwidth{\hfill\xiaowu\songti\leftmark\hfill}%
       \vskip2pt\hbox{\vrule width\textwidth height0.4pt depth0pt}}}
   \def\@oddfoot{\hfil\xiaowu\thepage\hfil}%
   \def\@evenhead{\vbox to\headheight{%
       \hb@xt@\textwidth{\xiaowu\songti%
-       \hfill \ucas@ctitle：\leftmark \hfill}%
+       \hfill \leftmark \hfill}%
       \vskip2pt\hbox{\vrule width\textwidth height0.4pt depth0pt}}}
   \def\@oddfoot{\hfil\xiaowu\thepage\hfil}%
   \let\@evenfoot=\@oddfoot}
@@ -242,8 +251,8 @@
       \hb@xt@\textwidth{\xiaowu\songti%
        \hfill \headingtitle \hfill}%
       \vskip2pt\hbox{\vrule width\textwidth height0.4pt depth0pt}}}
-  \def\@oddfoot{\hfil\xiaowu\thepage\hfil}
-  \let\@evenfoot=\@oddfoot}
+  \def\@oddfoot{\hfil\xiaowu\thepage}
+  \def\@evenfoot{\xiaowu\thepage\hfil}}
 
 \renewcommand{\chaptermark}[1]{\@mkboth{\@chapapp\  ~~#1}{}}
 \setlength{\parskip}{0pt \@plus2pt \@minus0pt}
@@ -339,7 +348,7 @@
 \fi
 \renewcommand\chapter{%
   \cleardoublepage%
-  \thispagestyle{ucas@headings}%
+  %\thispagestyle{ucas@headings}%
   \global\@topnum\z@%
   \@afterindenttrue%
   \secdef\@chapter\@schapter}
@@ -428,7 +437,7 @@
 \setcounter{tocdepth}{2}
 
 \renewcommand\tableofcontents{%
-  \cleardoublepage
+  \fcleardoublepage
   \ucas@chapter*[]{\contentsname}[\contentsname]
   \xiaosi[1.5]\@starttoc{toc}\normalsize}
 \ifucas@arialtoc
@@ -666,14 +675,14 @@
 \newcommand{\ucas@makeabstract}{%
   \scleardoublepage
   \ucas@chapter*[]{\cabstractname}[] % no tocline
-  \pagestyle{ucas@headings}
+  \pagestyle{ucas@plain}
   \pagenumbering{Roman}
   \ucas@cabstract
   \vskip12bp
   \setbox0=\hbox{{\heiti\ucas@ckeywords@title}}
   \noindent\hangindent\wd0\hangafter1
     \box0\ucas@ckeywords
-  \cleardoublepage
+  \fcleardoublepage
   \ucas@chapter*[]{\eabstractname}[\eabstractname] % no tocline
   \ucas@eabstract
   \vskip12bp
@@ -708,7 +717,7 @@
   \@starttoc{\csname ext@#1\endcsname}
   \let\numberline\oldnumberline}
 \def\ucas@listof#1{% #1: float type
-  \cleardoublepage
+  \fcleardoublepage
   \@ifstar
     {\ucas@chapter*[]{\csname list#1name\endcsname}\ucas@starttoc{#1}}
     {\ucas@chapter*[]{\csname list#1name\endcsname}\ucas@starttoc{#1}}}
@@ -747,16 +756,17 @@
    {\def\@noitemerr
      {\@latex@warning{Empty `thebibliography' environment}}%
     \endlist\frenchspacing}
+
 \let\ucas@appendix\appendix
 \renewenvironment{appendix}{%
   \ucas@appendix
-  \gdef\@chapapp{\appendixname~\thechapter}
+  \gdef\@chapapp{\appendixname}
   %\renewcommand\theequation{\ifnum \c@chapter>\z@ \thechapter-\fi\@arabic\c@equation}
   }{}
 \newenvironment{resume}[1][\ucas@resume@title]{%
   \cleardoublepage
   \ucas@chapter*{#1}}{}
-\newcommand{\resumeitem}[1]{\vspace{2.5em}{\noindent\xiaosi\heiti 【{#1}】 \par}}
+\newcommand{\resumeitem}[1]{\vspace{2.5em}{\noindent\xiaosi\heiti {#1}： \par}}
 \newcommand{\spine}[1][\ucas@ctitle]{
   \newpage\thispagestyle{empty}\heiti\xiaosi
   \parbox[t][23cm][t]{1em}{#1\vfill\ucas@cauthor\vfill 中国科学院大学}}
