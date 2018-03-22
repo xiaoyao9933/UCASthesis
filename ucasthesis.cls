@@ -42,6 +42,8 @@
 \DeclareOption{arial}{\ucas@arialtrue}
 \newif\ifucas@arialtoc
 \DeclareOption{arialtoc}{\ucas@arialtoctrue}
+\newif\ifucas@colorlink
+\DeclareOption{colorlink}{\ucas@colorlinktrue}
 \newif\ifucas@arialtitle
 \DeclareOption{arialtitle}{\ucas@arialtitletrue}
 \newif\ifucas@raggedbottom\ucas@raggedbottomtrue
@@ -118,6 +120,18 @@
     CJKbookmarks=false}
 \fi
 
+\ifxetex% use underline from xeCJKfntef
+    \renewcommand{\uline}[1]{\CJKunderline{#1}}% unified name
+\else% use underline from ulem
+    \RequirePackage{ulem}%
+\fi
+\newcommand{\ulenhance}[2][1pt]{% enhanced underline
+    \def\ULthickness{#1}% set thickness
+    \uline{#2}}
+\newcommand{\ulhshift}{-4em}% horizontal shift on underline
+\newcommand{\ulextend}[2][350pt]{% extend underline length
+    \hbox to #1{\hfill\hspace*{\ulhshift}#2\hfill}}
+
 \RequirePackage{refcount}
 \newcommand{\chapterref}[1]{%
   \@ifundefined{hyperref}{}{\hyperref[#1]%
@@ -127,18 +141,20 @@
 \definecolor{ucascitecolor}{rgb}{0.0, 0.50, 0.0}
 \definecolor{ucaslinkcolor}{rgb}{0.75, 0.0, 0.0}
 \definecolor{ucasurlcolor}{rgb}{0.0, 0.0, 0.75}
+
 \hypersetup{%
   bookmarksnumbered=true,
   bookmarksopen=true,
   bookmarksopenlevel=1,
   breaklinks=true,
-  colorlinks=true,
+  colorlinks=\ifucas@colorlink true\else false\fi,
   citecolor=ucascitecolor,
   linkcolor=ucaslinkcolor,
   urlcolor=ucasurlcolor,
   plainpages=false,
   pdfpagelabels,
   pdfborder=0 0 0}
+
 \urlstyle{same}
 \renewcommand\frontmatter{%
   \scleardoublepage
@@ -368,7 +384,7 @@
 \def\@makechapterhead#1{%
   \vspace*{17bp}
   {\parindent \z@ \centering
-    \bfseries \csname ucas@title@font\endcsname\heiti\sihao[2.41]
+     \csname ucas@title@font\endcsname \rmfamily\bfseries\sihao[2.41]
     \ifnum \c@secnumdepth >\m@ne
       \@chapapp\hskip1em
     \fi
@@ -380,7 +396,7 @@
 \def\@makeschapterhead#1{%
   \vspace*{17bp}%
   {\parindent \z@ \centering
-   \bfseries \csname ucas@title@font\endcsname\heiti\sihao[2.41]
+   \csname ucas@title@font\endcsname \rmfamily\bfseries \sihao[2.41]
      \def\@tempa{#1}
      \def\@tempb{\eabstractname}
      \ifx\@tempa\@tempb\fi
@@ -423,15 +439,15 @@
 \renewcommand\section{\@startsection {section}{1}{\z@}%
                      {8bp\@plus 1ex \@minus .2ex}%
                      {8bp \@plus .2ex}%
-                     {\csname ucas@title@font\endcsname\heiti\xiaosi[1.75]}}
+                     {\csname ucas@title@font\endcsname \rmfamily\bfseries\xiaosi[1.75]}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                         {4bp\@plus 1ex \@minus .2ex}%
                         {4bp \@plus .2ex}%
-                        {\csname ucas@title@font\endcsname\heiti\xiaosi[1.75]}}
+                        {\csname ucas@title@font\endcsname\rmfamily\bfseries\xiaosi[1.75]}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                            {4bp\@plus 1ex \@minus .2ex}%
                            {4bp \@plus .2ex}%
-                           {\csname ucas@title@font\endcsname\heiti\xiaosi[1.75]}}
+                           {\csname ucas@title@font\endcsname\rmfamily\bfseries\xiaosi[1.75]}}
 
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{2}
@@ -551,15 +567,15 @@
         \centering
         \includegraphics[width=90mm]{ucaslogo}
       \end{figure}
-      \parbox[t][8cm][t]{\paperwidth-8cm}{
+      \parbox[t][6cm][t]{\paperwidth-8cm}{
       \renewcommand{\baselinestretch}{1.3}
       \begin{center}
       \yihao\heiti\textbf{\ucas@apply}
       \par\vskip 40bp
-      \xiaosan\heiti\textbf{\ucas@ctitle}
+      \xiaosan\rmfamily\textbf{\ulenhance[1.2pt]{\ucas@ctitle}}
       \end{center}}
 
-\parbox[t][9cm][t]{\textwidth}{{\sihao\heiti
+\parbox[t][9cm][t]{\textwidth}{{\sihao\rmfamily\bfseries
 \begin{center}
 \setlength{\ucas@title@width}{4em}
 \setlength{\extrarowheight}{2.5ex}
@@ -580,7 +596,7 @@
 \end{tabular}
 \end{center}}}
   \begin{center}
-    {\vskip 3ex\sihao \heiti \ucas@cdate}
+    {\vskip 3ex\sihao \bfseries\rmfamily \ucas@cdate}
   \end{center}
 \end{center}} % end of titlepage
 \newcommand{\ucas@engcover}{%
@@ -592,11 +608,13 @@
 
   \begin{center}
     \vspace*{0.2cm}
+
     \parbox[t][3.2cm][t]{\paperwidth-7.2cm}{
       \renewcommand{\baselinestretch}{1.5}
       \begin{center}
-        \xiaosan\sffamily\textbf{\ucas@etitle}
-      \end{center}}
+        \xiaosan\rmfamily\textbf{\ulenhance[1.2pt]{\ucas@etitle}}
+      \end{center}
+    }
 
     \parbox[t][15cm][t]{\paperwidth-7.2cm}{
     \vspace*{2cm}

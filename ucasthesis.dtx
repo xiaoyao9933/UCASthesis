@@ -387,8 +387,7 @@
 % %\documentclass[%
 % %  master|doctor, % 必选选项
 % %  secret, % 可选选项
-% %  openany|openright, % 可选选项
-% %  arialtoc,arialtitle % 可选选项
+% %  colorlink, % 可选项
 % %  ]{ucasthesis}
 %
 % % 所有其它可能用到的包都统一放到这里了，可以根据自己的实际添加或者删除。
@@ -1008,6 +1007,9 @@
 %    \begin{macrocode}
 \newif\ifucas@arialtoc
 \DeclareOption{arialtoc}{\ucas@arialtoctrue}
+% 是否采用彩色链接
+\newif\ifucas@colorlink
+\DeclareOption{colorlink}{\ucas@colorlinktrue}
 %    \end{macrocode}
 % 章节标题中的英文是否用 arial
 %    \begin{macrocode}
@@ -1172,27 +1174,45 @@
     CJKbookmarks=false}
 \fi
 
+\ifxetex% use underline from xeCJKfntef
+    \renewcommand{\uline}[1]{\CJKunderline{#1}}% unified name
+\else% use underline from ulem
+    \RequirePackage{ulem}%
+\fi
+\newcommand{\ulenhance}[2][1pt]{% enhanced underline
+    \def\ULthickness{#1}% set thickness
+    \uline{#2}}
+\newcommand{\ulhshift}{-4em}% horizontal shift on underline
+\newcommand{\ulextend}[2][350pt]{% extend underline length
+    \hbox to #1{\hfill\hspace*{\ulhshift}#2\hfill}}
+
+
+
 \RequirePackage{refcount}
 \newcommand{\chapterref}[1]{%
   \@ifundefined{hyperref}{}{\hyperref[#1]%
   {\zhnumber{\getrefnumber{#1}}}}}
 
+
+
 \RequirePackage{xcolor}
 \definecolor{ucascitecolor}{rgb}{0.0, 0.50, 0.0}
 \definecolor{ucaslinkcolor}{rgb}{0.75, 0.0, 0.0}
 \definecolor{ucasurlcolor}{rgb}{0.0, 0.0, 0.75}
+
 \hypersetup{%
   bookmarksnumbered=true,
   bookmarksopen=true,
   bookmarksopenlevel=1,
   breaklinks=true,
-  colorlinks=true,
+  colorlinks=\ifucas@colorlink true\else false\fi,
   citecolor=ucascitecolor,
   linkcolor=ucaslinkcolor,
   urlcolor=ucasurlcolor,
   plainpages=false,
   pdfpagelabels,
   pdfborder=0 0 0}
+
 %    \end{macrocode}
 %
 % dvips 模式下网址断字有问题，请手工加载 breakurl 这个宏包解决之。
@@ -1774,7 +1794,7 @@
 \def\@makechapterhead#1{%
   \vspace*{17bp}
   {\parindent \z@ \centering
-    \bfseries \csname ucas@title@font\endcsname\heiti\sihao[2.41]
+     \csname ucas@title@font\endcsname \rmfamily\bfseries\sihao[2.41]
     \ifnum \c@secnumdepth >\m@ne
       \@chapapp\hskip1em
     \fi
@@ -1786,7 +1806,7 @@
 \def\@makeschapterhead#1{%
   \vspace*{17bp}%
   {\parindent \z@ \centering
-   \bfseries \csname ucas@title@font\endcsname\heiti\sihao[2.41]
+   \csname ucas@title@font\endcsname \rmfamily\bfseries \sihao[2.41]
      \def\@tempa{#1}
      \def\@tempb{\eabstractname}
      \ifx\@tempa\@tempb\fi
@@ -1847,7 +1867,7 @@
 \renewcommand\section{\@startsection {section}{1}{\z@}%
                      {8bp\@plus 1ex \@minus .2ex}%
                      {8bp \@plus .2ex}%
-                     {\csname ucas@title@font\endcsname\heiti\xiaosi[1.75]}}
+                     {\csname ucas@title@font\endcsname \rmfamily\bfseries\xiaosi[1.75]}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1857,7 +1877,7 @@
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                         {4bp\@plus 1ex \@minus .2ex}%
                         {4bp \@plus .2ex}%
-                        {\csname ucas@title@font\endcsname\heiti\xiaosi[1.75]}}
+                        {\csname ucas@title@font\endcsname\rmfamily\bfseries\xiaosi[1.75]}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1868,7 +1888,7 @@
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                            {4bp\@plus 1ex \@minus .2ex}%
                            {4bp \@plus .2ex}%
-                           {\csname ucas@title@font\endcsname\heiti\xiaosi[1.75]}}
+                           {\csname ucas@title@font\endcsname\rmfamily\bfseries\xiaosi[1.75]}}
 %</cls>
 %    \end{macrocode}
 % \end{macro}
@@ -2123,7 +2143,7 @@
 \fi
 \newcommand{\headingtitle}{\ucas@ctitle}
 
-\def\ucas@department@title{研\hspace{\fill}究\hspace{\fill}所}
+\def\ucas@department@title{培养单位}
 \def\ucas@major@title{学科专业}
 \def\ucas@degree@title{学位类别}
 \def\ucas@supervisor@title{指导教师}
@@ -2193,12 +2213,12 @@
         \centering
         \includegraphics[width=90mm]{ucaslogo}
       \end{figure}
-      \parbox[t][8cm][t]{\paperwidth-8cm}{
+      \parbox[t][6cm][t]{\paperwidth-8cm}{
       \renewcommand{\baselinestretch}{1.3}
       \begin{center}    
       \yihao\heiti\textbf{\ucas@apply}
       \par\vskip 40bp
-      \xiaosan\heiti\textbf{\ucas@ctitle}
+      \xiaosan\rmfamily\textbf{\ulenhance[1.2pt]{\ucas@ctitle}}
       \end{center}}
 %    \end{macrocode}
 %
@@ -2206,7 +2226,7 @@
 %    \begin{macrocode}
 
 
-\parbox[t][9cm][t]{\textwidth}{{\sihao\heiti
+\parbox[t][9cm][t]{\textwidth}{{\sihao\rmfamily\bfseries
 \begin{center}
 \setlength{\ucas@title@width}{4em}
 \setlength{\extrarowheight}{2.5ex}
@@ -2231,7 +2251,7 @@
 % 论文成文打印的日期，用阿拉伯数字
 %    \begin{macrocode}
   \begin{center}
-    {\vskip 3ex\sihao \heiti \ucas@cdate}
+    {\vskip 3ex\sihao \bfseries\rmfamily \ucas@cdate}
   \end{center}
 \end{center}} % end of titlepage
 %    \end{macrocode}
@@ -2249,11 +2269,13 @@
 
   \begin{center}
     \vspace*{0.2cm}
+
     \parbox[t][3.2cm][t]{\paperwidth-7.2cm}{
       \renewcommand{\baselinestretch}{1.5}
       \begin{center}
-        \xiaosan\sffamily\textbf{\ucas@etitle}
-      \end{center}}
+        \xiaosan\rmfamily\textbf{\ulenhance[1.2pt]{\ucas@etitle}}
+      \end{center}
+    }
 
 
     \parbox[t][15cm][t]{\paperwidth-7.2cm}{
@@ -2799,7 +2821,7 @@
       \thesubsection\quad
       \fi
       ##1}}
-  \def\subsubsectionmark##1{%
+  \def\subsubsectionmark##1{%normalfont
     \markright{\ifnum \c@secnumdepth >\m@ne
       \thesubsubsection\quad
       \fi
