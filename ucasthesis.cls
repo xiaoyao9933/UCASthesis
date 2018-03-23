@@ -345,7 +345,7 @@
 \def\ucas@tabular{\wuhao[1.5]\old@tabular}
 \DeclareCaptionLabelFormat{ucas}{{#1~\rmfamily #2}}
 \DeclareCaptionLabelSeparator{ucas}{\hspace{1em}}
-\DeclareCaptionFont{ucas}{\heiti \wuhao[1.5]}
+\DeclareCaptionFont{ucas}{\bfseries\rmfamily \wuhao[1.5]}
 \captionsetup{labelformat=ucas,labelsep=ucas,labelfont=ucas,font=ucas}
 \captionsetup[table]{position=top,belowskip={12bp-\intextsep},aboveskip=6bp}
 \captionsetup[figure]{position=bottom,belowskip={12bp-\intextsep},aboveskip=6bp}
