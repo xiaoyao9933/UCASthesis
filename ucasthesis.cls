@@ -306,13 +306,13 @@
     #1
   \par\egroup}
 \allowdisplaybreaks[4]
-\renewcommand\theequation{\ifnum \c@chapter>\z@ \thechapter-\fi\@arabic\c@equation}
+\renewcommand\theequation{\ifnum \c@chapter>\z@ \thechapter.\fi\@arabic\c@equation}
 \def\make@df@tag{\@ifstar\ucas@make@df@tag@@\make@df@tag@@@}
 \def\ucas@make@df@tag@@#1{\gdef\df@tag{\ucas@maketag{#1}\def\@currentlabel{#1}}}
 \renewcommand{\eqref}[1]{\textup{(\ref{#1})}}
-\renewcommand\theequation{\ifnum \c@chapter>\z@ \thechapter-\fi\@arabic\c@equation}
-\def\ucas@maketag#1{\maketag@@@{(\ignorespaces #1\unskip\@@italiccorr)}}
-\def\tagform@#1{\maketag@@@{(\ignorespaces #1\unskip\@@italiccorr)\equcaption{#1}}}
+\renewcommand\theequation{\ifnum \c@chapter>\z@ \thechapter.\fi\@arabic\c@equation}
+\def\ucas@maketag#1{\maketag@@@{... (\ignorespaces #1\unskip\@@italiccorr)}}
+\def\tagform@#1{\maketag@@@{... (\ignorespaces #1\unskip\@@italiccorr)\equcaption{#1}}}
 \gdef\@endtrivlist#1{%  % from \endtrivlist
   \if@inlabel \indent\fi
   \if@newlist \@noitemerr\fi

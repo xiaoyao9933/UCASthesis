@@ -1563,7 +1563,7 @@
 %    \begin{macrocode}
 %<*cls>
 \allowdisplaybreaks[4]
-\renewcommand\theequation{\ifnum \c@chapter>\z@ \thechapter-\fi\@arabic\c@equation}
+\renewcommand\theequation{\ifnum \c@chapter>\z@ \thechapter.\fi\@arabic\c@equation}
 %    \end{macrocode}
 %
 % 公式距前后文的距离由 4 个参数控制，参见 \cs{normalsize} 的定义。
@@ -1582,15 +1582,15 @@
 \def\ucas@make@df@tag@@#1{\gdef\df@tag{\ucas@maketag{#1}\def\@currentlabel{#1}}}
 % redefinitation of tagform brokes eqref!
 \renewcommand{\eqref}[1]{\textup{(\ref{#1})}}
-\renewcommand\theequation{\ifnum \c@chapter>\z@ \thechapter-\fi\@arabic\c@equation}
+\renewcommand\theequation{\ifnum \c@chapter>\z@ \thechapter.\fi\@arabic\c@equation}
 %\ifucas@bachelor
 %  \def\ucas@maketag#1{\maketag@@@{%
 %    (\ignorespaces\text{\equationname\hskip0.5em}#1\unskip\@@italiccorr)}}
 %  \def\tagform@#1{\maketag@@@{%
 %    (\ignorespaces\text{\equationname\hskip0.5em}#1\unskip\@@italiccorr)\equcaption{#1}}}
 %\else
-\def\ucas@maketag#1{\maketag@@@{(\ignorespaces #1\unskip\@@italiccorr)}}
-\def\tagform@#1{\maketag@@@{(\ignorespaces #1\unskip\@@italiccorr)\equcaption{#1}}}
+\def\ucas@maketag#1{\maketag@@@{... (\ignorespaces #1\unskip\@@italiccorr)}}
+\def\tagform@#1{\maketag@@@{... (\ignorespaces #1\unskip\@@italiccorr)\equcaption{#1}}}
 %\fi
 %    \end{macrocode}
 % ^^A 使公式编号随着每开始新的一节而重新开始。

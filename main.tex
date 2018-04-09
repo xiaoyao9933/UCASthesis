@@ -21,7 +21,8 @@
 % 限制顺序数字方式，所以比较省事。
 \usepackage[backend=biber, bibstyle=gb7714-2015,%nature,%%加载biblatex宏包，使用参考文献
 citestyle=gb7714-2015,%,backref=true%%其中后端backend使用biber
-gbnamefmt=lowercase
+gbnamefmt=lowercase,
+gbpub=false % 是否显示“未知出版商”等信息从而更加符合gb7714-2015样式
 ]{biblatex}%标注(引用)样式citestyle，著录样式bibstyle都采用gb7714-2015样式
 \renewcommand*{\bibfont}{\songti\wuhao[1.5]}
 \addbibresource{ref/refs.bib}
