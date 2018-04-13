@@ -581,20 +581,22 @@
 \setlength{\extrarowheight}{2.5ex}
 \begin{tabular}{ll}
 
-\ucas@author@title\ucas@title@sep     &\underline{\makebox[25em]{\ucas@cauthor}}\\
+\ucas@author@title\ucas@title@sep     &\underline{\makebox[22.5em]{\ucas@cauthor}}\\
 
-\ucas@supervisor@title\ucas@title@sep     &\underline{\makebox[25em]{\ucas@csupervisor}}\\
+\ucas@supervisor@title\ucas@title@sep     &\underline{\makebox[22.5em]{\ucas@csupervisor}}\\
 
-&\underline{\makebox[25em]{\ucas@csupervisorplace}}\\
+&\underline{\makebox[22.5em]{\ucas@csupervisorplace}}\\
 
-\ucas@degree@title\ucas@title@sep     &\underline{\makebox[25em]{\ucas@cdegree}}\\
+\ucas@degree@title\ucas@title@sep     &\underline{\makebox[22.5em]{\ucas@cdegree}}\\
 
-\ucas@major@title\ucas@title@sep     &\underline{\makebox[25em]{\ucas@cmajor}}\\
+\ucas@major@title\ucas@title@sep     &\underline{\makebox[22.5em]{\ucas@cmajor}}\\
 
-\ucas@put@title{\ucas@department@title}\ucas@title@sep     &\underline{\makebox[25em]{\ucas@cdepartment}}\\
+\ucas@put@title{\ucas@department@title}\ucas@title@sep     &\underline{\makebox[22.5em]{\ucas@cdepartment}}\\
 
 \end{tabular}
-\end{center}}}
+\end{center}}
+
+}
   \begin{center}
     {\vskip 3ex\sihao \bfseries\rmfamily \ucas@cdate}
   \end{center}
