@@ -2315,22 +2315,22 @@
 % 封面中论文授权部分。
 %    \begin{macrocode}
 \newcommand{\ucas@declare@mk}{%
-\begin{center}\sihao\heiti{\ucas@declarename}\end{center}
-  \vskip25pt\xiaosi[2.03]\par
+\begin{center}\vspace*{1.7cm}\sihao\heiti{\ucas@declarename}\end{center}
+  \vskip18pt\xiaosi[2.03]\par
   \ucas@declaretext\par
-  \vskip1.5cm
+  \vskip1.3cm
   \xiaosi
-  \hspace{13em}\ucas@signature\par
+  \hspace{15em}\ucas@signature\par
   \vskip0.4cm
-  \hspace{13em}\ucas@backdate
+  \hspace{15em}\ucas@backdate
 }
 \newcommand{\ucas@authorization@mk}{%
   %\vspace*{0.72cm} % shit code!
   \begin{center}\sihao\heiti{\ucas@authtitle}\end{center}
-  \vskip40pt\xiaosi[2.03]\par
+  \vskip18pt\xiaosi[2.03]\par
   \ucas@authorization\par
   %\ucas@authorizationaddon\par
-  \vskip1.5cm
+  \vskip1.3cm
   \xiaosi
   \hspace{6em}\ucas@authorsig\hspace{6em}\ucas@teachersig\par
   \vskip0.4cm
@@ -2369,7 +2369,7 @@
         \topsep\z@%
         \listparindent\parindent%
         \parsep\parskip%
-        \setlength{\itemsep}{3cm}
+        \setlength{\itemsep}{2cm}
         \setlength{\leftmargin}{-3mm}%
         \setlength{\rightmargin}{-3mm}}%
       \item[]\ucas@declare@mk
