@@ -565,17 +565,17 @@
       \ifucas@secret\hfill{\sihao[1]\songti 密级：\ulenhance[1pt]{\makebox[6em]{\ucas@secretcontent}}}\fi}
       \begin{figure}[H]
         \centering
-        \includegraphics[width=90mm]{ucaslogo}
+        \includegraphics[width=104.3mm]{ucaslogo}
       \end{figure}
       \parbox[t][6cm][t]{\paperwidth-8cm}{
       \renewcommand{\baselinestretch}{1.3}
       \begin{center}
       \yihao\heiti\textbf{\ucas@apply}
       \par\vskip 40bp
-      \xiaosan\rmfamily\textbf{\ulenhance[1.2pt]{\ucas@ctitle}}
+      \xiaosan\heiti\textbf{\ulenhance[1.2pt]{\ucas@ctitle}}
       \end{center}}
 
-\parbox[t][9cm][t]{\textwidth}{{\sihao\rmfamily\bfseries
+\parbox[t][9cm][t]{\textwidth}{{\sihao\songti\bfseries
 \begin{center}
 \setlength{\ucas@title@width}{4em}
 \setlength{\extrarowheight}{2.5ex}
@@ -598,7 +598,7 @@
 
 }
   \begin{center}
-    {\vskip 3ex\sihao \bfseries\rmfamily \ucas@cdate}
+    {\vskip 3ex\sihao\songti \bfseries \ucas@cdate}
   \end{center}
 \end{center}} % end of titlepage
 \newcommand{\ucas@engcover}{%
