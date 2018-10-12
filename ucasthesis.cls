@@ -664,9 +664,9 @@
   %\ucas@authorizationaddon\par
   \vskip1.3cm
   \xiaosi
-  \hspace{6em}\ucas@authorsig\hspace{6em}\ucas@teachersig\par
+  \hspace{4em}\ucas@authorsig\hspace{10em}\ucas@teachersig\par
   \vskip0.4cm
-  \hspace{6em}\ucas@backdate\hspace{6em}\ucas@backdate
+  \hspace{4em}\ucas@backdate\hspace{10em}\ucas@backdate
   }
 \newcommand{\makecover}{
   \phantomsection
